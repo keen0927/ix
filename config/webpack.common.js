@@ -53,12 +53,17 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                        useRelativePath: true,
-                        limit: 10000
+                            useRelativePath: true,
+                            limit: 10000
+                        }
                     }
-                }
-            ]
+                ]
             },
+            {
+                test: /\.(ts|js)x?$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader'
+            }
         ]
     },
     optimization: {
