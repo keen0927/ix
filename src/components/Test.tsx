@@ -1,8 +1,14 @@
 import React from 'react';
 
-const Test = () => {
+type TestProps = {
+    name: string
+}
+const Test = ({name}: TestProps) => {
     return (
-        <div>Components</div>
+        <div>
+            Components
+            {name}
+        </div>
     );
 };
 

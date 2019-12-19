@@ -21,7 +21,7 @@ const App = () => {
 
     return (
         <AppBlock isActive={isActive} onClick={onClick}>
-            <Test />
+            <Test name="keen" />
         </AppBlock>
     );
 };

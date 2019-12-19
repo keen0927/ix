@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -27,16 +28,15 @@ module.exports = {
             {
                 test: /\.(ts|js)x?$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            "@babel/preset-env",
-                            "@babel/preset-typescript",
-                            "@babel/preset-react"
-                        ]
-                    }
-                }
+                use: [
+                    'babel-loader',
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true
+                        },
+                    },
+                ]
             },
             {
                 test: /\.html$/,
@@ -82,6 +82,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new CaseSensitivePathsPlugin(),
+        new ForkTsCheckerWebpackPlugin({silent: true}),
         new HtmlWebpackPlugin({
             template: './public/index.html',
             filename: 'index.html'
