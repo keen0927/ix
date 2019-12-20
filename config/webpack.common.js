@@ -28,15 +28,19 @@ module.exports = {
             {
                 test: /\.(ts|js)x?$/,
                 exclude: /node_modules/,
-                use: [
-                    'babel-loader',
-                    {
-                        loader: 'ts-loader',
-                        options: {
-                            transpileOnly: true
-                        },
-                    },
-                ]
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            [
+                                "@babel/preset-env",
+                                { "targets": { "browsers": ["last 2 versions", ">= 5% in KR"] } }
+                            ],
+                            "@babel/preset-typescript",
+                            "@babel/preset-react"
+                        ]
+                    }
+                }
             },
             {
                 test: /\.html$/,
