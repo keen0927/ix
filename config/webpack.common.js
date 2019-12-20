@@ -31,7 +31,10 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            "@babel/preset-env",
+                            [
+                                "@babel/preset-env",
+                                { "targets": { "browsers": ["last 2 versions", ">= 5% in KR"] } }
+                            ],
                             "@babel/preset-typescript",
                             "@babel/preset-react"
                         ]
