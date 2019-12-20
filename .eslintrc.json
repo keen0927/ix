@@ -23,14 +23,16 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "emotion"
     ],
     "rules": {
         "semi": [
             2,
             "always"
         ],
-        "react/no-unescaped-entities": 0
+        "react/no-unescaped-entities": 0,
+        "emotion/jsx-import": "error"
     },
     "settings": {
         "react": {
