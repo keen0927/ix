@@ -29,7 +29,8 @@
         "semi": [
             2,
             "always"
-        ]
+        ],
+        "react/no-unescaped-entities": 0
     },
     "settings": {
         "react": {

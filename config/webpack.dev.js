@@ -13,4 +13,12 @@ module.exports = merge(common, {
         historyApiFallback: true,
         overlay: true
     },
+    output: {
+        pathinfo: false,
+    },
+    optimization: {
+        removeAvailableModules: false,
+        removeEmptyChunks: false,
+        splitChunks: false,
+    }
 });
