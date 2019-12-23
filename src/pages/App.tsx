@@ -1,9 +1,10 @@
 import React from 'react';
+import Button from '../components/Button';
 
 function App() {
     return (
         <div>
-            App
+            <Button>버튼이름</Button>
         </div>
     );
 }
