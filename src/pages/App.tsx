@@ -4,7 +4,7 @@ import Button from '../components/Button';
 function App() {
     return (
         <div>
-            <Button>버튼이름</Button>
+            <Button name='keen' >버튼이름</Button>
         </div>
     );
 }

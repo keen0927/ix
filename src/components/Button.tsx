@@ -5,12 +5,13 @@ import { colors } from '../static/style/colors.js';
 
 type ButtonProps = {
     children: React.ReactNode;
+    name?: string,
     onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Button = ({ children, onClick }: ButtonProps) => {
+const Button = ({ children, onClick, name }: ButtonProps) => {
     return (
-        <button css={style} onClick={onClick}>{ children }</button>
+    <button css={style} onClick={onClick}>{ name }{ children }</button>
     );
 };
 

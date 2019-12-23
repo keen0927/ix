@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -28,17 +29,7 @@ module.exports = {
                 test: /\.(ts|js)x?$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            [
-                                "@babel/preset-env",
-                                { "targets": { "browsers": ["last 2 versions", ">= 5% in KR"] } }
-                            ],
-                            "@babel/preset-typescript",
-                            "@babel/preset-react"
-                        ]
-                    }
+                    loader: 'babel-loader'
                 }
             },
             {
@@ -92,6 +83,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].[hash].css",
             chunkFilename: "[name].[hash].css"
-        })
+        }),
+        new ForkTsCheckerWebpackPlugin({
+            async: false
+        }),
     ]
 };
