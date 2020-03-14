@@ -1,20 +1,17 @@
 {
   "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "esnext",
-    "target": "es5",
+    "strict": true,
     "lib": [
-      "es6",
+      "es5",
+      "es2015",
       "dom"
     ],
-    "plugins": [
-      {
-        "name": "typescript-tslint-plugin"
-      }
-    ],
-    "sourceMap": true,
+    "jsx": "react",
+    "sourceMap": false,
+    "outDir": "build/dist",
+    "target": "es5",
+    "module": "esnext",
     "allowJs": true,
-    "jsx": "preserve",
     "moduleResolution": "node",
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
@@ -26,12 +23,14 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "listEmittedFiles": false,
+    "removeComments": true,
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin"
+      }
+    ]
   },
   "exclude": [
     "node_modules",
