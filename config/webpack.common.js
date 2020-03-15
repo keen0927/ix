@@ -1,17 +1,15 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const path = require('path');
+// const path = require('path');
+// const merge = require('webpack-merge');
+// const Target = process.env.npm_lifecycle_event;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     entry: './src/index.tsx',
-    output: {
-        filename: 'bundle.[hash].js',
-        chunkFilename: '[name].[hash].js',
-        path: path.resolve(__dirname, '../dist'),
-    },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
@@ -37,7 +35,7 @@ module.exports = {
                 use: [
                     {
                         loader: 'html-loader',
-                        options: { minimize: true }
+                        options: {minimize: true}
                     }
                 ]
             },
@@ -64,11 +62,13 @@ module.exports = {
         moduleIds: 'hashed',
         runtimeChunk: 'single',
         splitChunks: {
+            chunks: 'all',
+            maxInitialRequests: Infinity,
+            minSize: 0,
             cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'all',
+                reactVendor: {
+                    test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|redux|react-redux|redux-saga|immer)[\\/]/,
+                    name: "reactVendor"
                 }
             }
         }
@@ -76,14 +76,6 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new CaseSensitivePathsPlugin(),
-        new HtmlWebpackPlugin({
-            template: './public/index.html',
-            filename: 'index.html'
-        }),
-        new MiniCssExtractPlugin({
-            filename: "[name].[hash].css",
-            chunkFilename: "[name].[hash].css"
-        }),
         new ForkTsCheckerWebpackPlugin({
             async: false
         }),

@@ -1,11 +1,12 @@
 import * as React from 'react';
 
 function App() {
+  const title = 'react + ts';
   return (
     <>
-      1234;
+      {title}
     </>
-  )
+  );
 }
 
 export default App;
