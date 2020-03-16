@@ -1,15 +1,17 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
-
-const TestBlock = styled.div`
-	width: 100px;
-	height: 100px;
-	border: 1px solid #000;
-`;
+import { Switch, Route } from 'react-router-dom';
+import Routes from './routes';
 
 function App() {
-	const title = 'react + ts';
-	return <TestBlock>{title} 테스트</TestBlock>;
+	return (
+		<>
+			<Switch>
+				{Routes.map(({ path, component, exact }, index) => (
+					<Route to={path} component={component} exact={exact} key={index} />
+				))}
+			</Switch>
+		</>
+	);
 }
 
 export default App;
