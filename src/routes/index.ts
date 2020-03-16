@@ -1,9 +1,9 @@
-import Home from '../pages/Home';
+import TodoHome from '../pages/TodoHome';
 
 const routes = [
 	{
 		path: ['/', '/home'],
-		component: Home,
+		component: TodoHome,
 		exact: true,
 	},
 ];
