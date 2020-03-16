@@ -1,24 +1,34 @@
 {
-  "presets": [
-      [
-          "@babel/preset-env",
-          { "targets": { "browsers": ["last 2 versions", ">= 5% in KR"] } }
-      ],
-      "@babel/react",
-      "@babel/typescript"
-  ],
-  "env": {
-      "production": {
-          "plugins": ["emotion"]
-      },
-      "development": {
-          "plugins": [
-              [
-                  "emotion", {
-                      "sourceMap": true
-                  }
-              ]
-          ]
-      }
-  }
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "browsers": [
+                        "last 2 versions",
+                        ">= 5% in KR"
+                    ]
+                }
+            }
+        ],
+        "@babel/react",
+        "@babel/typescript"
+    ],
+    "env": {
+        "production": {
+            "plugins": [
+                "emotion"
+            ]
+        },
+        "development": {
+            "plugins": [
+                [
+                    "emotion",
+                    {
+                        "sourceMap": true
+                    }
+                ]
+            ]
+        }
+    }
 }
