@@ -7,7 +7,8 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/eslint-recommended"
+        "plugin:@typescript-eslint/eslint-recommended",
+        "prettier"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -33,7 +34,8 @@
         ],
         "react/no-unescaped-entities": 0,
         "emotion/jsx-import": "error",
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "emotion/jsx-import": "error"
     },
     "settings": {
         "react": {

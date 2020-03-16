@@ -6,13 +6,26 @@
                 "targets": {
                     "browsers": [
                         "last 2 versions",
-                        ">= 5% in KR"
+                        ">= 5% in KR",
+                        "safari >= 10"
                     ]
                 }
             }
         ],
         "@babel/react",
         "@babel/typescript"
+    ],
+    "plugins": [
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "absoluteRuntime": false,
+                "corejs": 3,
+                "helpers": true,
+                "regenerator": true,
+                "useESModules": false
+            }
+        ]
     ],
     "env": {
         "production": {
