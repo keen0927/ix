@@ -4,15 +4,15 @@ import Test from '../pages/Test';
 const routes = [
 	{
 		path: '/',
-		component: Test,
+		component: TodoHome,
+		// component: Test,
 		exact: true,
 	},
 	{
 		// path: ['/', '/home'],
 		path: '/home',
-		component: TodoHome,
-		exact: true,
-	},
+		component: TodoHome
+	}
 ];
 
 export default routes;

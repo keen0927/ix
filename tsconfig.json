@@ -24,6 +24,7 @@
     "allowSyntheticDefaultImports": true,
     "listEmittedFiles": false,
     "removeComments": true,
+    "esModuleInterop": true,
     "plugins": [
       {
         "name": "typescript-tslint-plugin"

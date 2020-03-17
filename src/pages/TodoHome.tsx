@@ -1,6 +1,6 @@
 // import React, { Suspense, lazy } from 'react';
 // const HomePopularKeyword = lazy(() => import('../containers/Home/HomePopularKeyword'));
-import * as React from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import TodoHeader from '../container/TodoHeader';
 import TodoList from '../container/TodoList';

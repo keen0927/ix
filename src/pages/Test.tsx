@@ -17,14 +17,14 @@ function Home() {
 	// http://localhost:3000/posts?q=Cras
 	// http://localhost:3000/posts?q=Cras&_sort=id&_order=desc
 
-	const dispatch = useDispatch();
-	const page = useSelector((state: RootState) => state.todos.page);
+	// const dispatch = useDispatch();
+	// const page = useSelector((state: RootState) => state.todos.page);
 
-	console.log(page);
+	// console.log(page);
 
-	React.useEffect(() => {
-		dispatch(listRequest());
-	}, []);
+	// React.useEffect(() => {
+	// 	dispatch(listRequest());
+	// }, []);
 
 	return (
 		<>

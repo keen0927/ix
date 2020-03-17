@@ -1,8 +1,9 @@
 export type Todo = {
-	id: number;
+	id?: number;
 	text: string;
-	createDate: string;
-	editDate: string;
-	done: boolean;
-	reference: number[];
+	createDate?: string;
+	editDate?: string;
+	done?: boolean;
+	reference?: number[];
+	onClick?: () => void;
 };
