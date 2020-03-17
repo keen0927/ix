@@ -1,10 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
-import {
-	LIST_REQUEST,
-	LIST_SUCCESS,
-	LIST_FAILURE,
-} from '../../reducer/List/ReducerList';
+import { LIST_REQUEST, LIST_SUCCESS, LIST_FAILURE } from './actions';
 
 function loadListAPI() {
 	return axios.get('http://localhost:3000/posts?_page=1&_limit=10');
@@ -15,7 +11,7 @@ function* loadList() {
 		const response = yield call(loadListAPI);
 		yield put({
 			type: LIST_SUCCESS,
-			data: response.data,
+			payload: response.data,
 		});
 	} catch (e) {
 		console.error(e);
@@ -26,9 +22,10 @@ function* loadList() {
 }
 
 function* watchLoadList() {
+	console.log('watchLoadList');
 	yield takeEvery(LIST_REQUEST, loadList);
 }
 
-export default function* popularKeywordSaga() {
+export function* listSaga() {
 	yield all([fork(watchLoadList)]);
 }

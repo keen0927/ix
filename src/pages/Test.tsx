@@ -2,8 +2,9 @@
 // const HomePopularKeyword = lazy(() => import('../containers/Home/HomePopularKeyword'));
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { useDispatch } from 'react-redux';
-import { LIST_REQUEST } from '../reducer/List/ReducerList';
+import { useDispatch, useSelector } from 'react-redux';
+import { listRequest } from '../modules/todos';
+import { RootState } from '../modules';
 // import styleVars from '../static/css-in-js/styleVars';
 
 const DivBlock = styled.div`
@@ -17,10 +18,12 @@ function Home() {
 	// http://localhost:3000/posts?q=Cras&_sort=id&_order=desc
 
 	const dispatch = useDispatch();
+	const page = useSelector((state: RootState) => state.todos.page);
+
+	console.log(page);
 
 	React.useEffect(() => {
-		console.log('effect');
-		dispatch({ type: LIST_REQUEST });
+		dispatch(listRequest());
 	}, []);
 
 	return (

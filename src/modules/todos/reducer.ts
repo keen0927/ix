@@ -1,5 +1,11 @@
 import produce from 'immer';
-import { Todo } from '../../types/TypesTodo';
+import { Todo } from './types';
+import {
+	ListAction,
+	LIST_REQUEST,
+	LIST_SUCCESS,
+	LIST_FAILURE,
+} from './actions';
 
 interface InitialStateProps {
 	lists: Todo[];
@@ -11,18 +17,14 @@ const initialState: InitialStateProps = {
 	page: 1,
 };
 
-export const LIST_REQUEST = 'LIST_REQUEST';
-export const LIST_SUCCESS = 'LIST_SUCCESS';
-export const LIST_FAILURE = 'LIST_FAILURE';
-
-const ReducerList = (state = initialState, action: any) => {
+const todos = (state = initialState, action: ListAction) => {
 	return produce(state, draft => {
 		switch (action.type) {
 			case LIST_REQUEST: {
 				break;
 			}
 			case LIST_SUCCESS: {
-				const response = action.data;
+				const response = action.payload;
 				draft.lists = response;
 				break;
 			}
@@ -36,4 +38,4 @@ const ReducerList = (state = initialState, action: any) => {
 	});
 };
 
-export default ReducerList;
+export default todos;
