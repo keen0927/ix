@@ -1,8 +1,15 @@
 import TodoHome from '../pages/TodoHome';
+import Test from '../pages/Test';
 
 const routes = [
 	{
-		path: ['/', '/home'],
+		path: '/',
+		component: Test,
+		exact: true,
+	},
+	{
+		// path: ['/', '/home'],
+		path: '/home',
 		component: TodoHome,
 		exact: true,
 	},
