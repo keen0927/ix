@@ -69,7 +69,7 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		new CaseSensitivePathsPlugin(),
 		new ForkTsCheckerWebpackPlugin({
-			async: false,
+			silent: true,
 		}),
 	],
 };
