@@ -39,12 +39,14 @@ const TodoItemBlock = styled.li`
 	}
 `;
 
-const TodoItem: FC<Todo> = ({text, onClick}: Todo) => {
+const TodoItem: FC<Todo> = ({ text, onClick }: Todo) => {
 	return (
 		<TodoItemBlock>
 			<input type="checkbox" />
 			<Link to="/">{text}</Link>
-			<button type="button" onClick={onClick}>메뉴</button>
+			<button type="button" onClick={onClick}>
+				메뉴
+			</button>
 		</TodoItemBlock>
 	);
 };
