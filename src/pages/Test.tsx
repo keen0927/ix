@@ -1,15 +1,17 @@
 // import React, { Suspense, lazy } from 'react';
 // const HomePopularKeyword = lazy(() => import('../containers/Home/HomePopularKeyword'));
 import * as React from 'react';
-import styled from '@emotion/styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { listRequest } from '../modules/todos';
-import { RootState } from '../modules';
+// import styled from '@emotion/styled';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { listRequest } from '../modules/todos';
+// import { RootState } from '../modules';
 // import styleVars from '../static/css-in-js/styleVars';
 
-const DivBlock = styled.div`
-	border: 1px solid #000;
-`;
+import TodoSearch from '../container/TodoSearch';
+
+// const DivBlock = styled.div`
+// 	border: 1px solid #000;
+// `;
 
 function Home() {
 	// http://localhost:3000/posts/1
@@ -28,9 +30,7 @@ function Home() {
 
 	return (
 		<>
-			<DivBlock>123</DivBlock>
-			<div>123</div>
-			<p>123</p>
+			<TodoSearch />
 		</>
 	);
 }

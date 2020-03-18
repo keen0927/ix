@@ -1,18 +1,18 @@
-import TodoHome from '../pages/TodoHome';
+import Home from '../pages/Home';
 import Test from '../pages/Test';
 
 const routes = [
 	{
 		path: '/',
-		component: TodoHome,
-		// component: Test,
+		// component: Home,
+		component: Test,
 		exact: true,
 	},
 	{
 		// path: ['/', '/home'],
-		path: '/home',
-		component: TodoHome
-	}
+		// path: '/home',
+		// component: TodoHome,
+	},
 ];
 
 export default routes;
