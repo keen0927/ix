@@ -7,7 +7,8 @@
 		"dev": "webpack-dev-server --config ./config/webpack.dev",
 		"build": "webpack --config ./config/webpack.prod",
 		"analyze": "webpack --config ./config/webpack.analyze",
-		"db": "npx json-server ./src/lib/mock/db.json --watch"
+		"db": "npx json-server ./src/lib/mock/db.json --watch",
+		"test": "jest --coverage --verbose"
 	},
 	"keywords": [],
 	"author": "keen",
@@ -66,5 +67,16 @@
 		"react-router-dom": "^5.1.2",
 		"redux": "^4.0.5",
 		"redux-saga": "^1.1.3"
+	},
+	"jest": {
+		"setupFilesAfterEnv": [
+			"<rootDir>/src/test/setupTests.js"
+		],
+		"testPathIgnorePatterns": [
+			"<rootDir>/node_modules/"
+		],
+		"snapshotSerializers": [
+			"enzyme-to-json/serializer"
+		]
 	}
 }
