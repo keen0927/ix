@@ -3,20 +3,61 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import styleVars from '../static/css-in-js/styleVars';
 import { Todo } from '../modules/todos';
+import { SvgCheck, SvgClose } from '../static/svg/svgAsset';
+
+
+const TodoCheckBox = styled.label`
+	display: block;
+	position: relative;
+	width: 24px;
+	height: 24px;
+
+	input {
+		position: relative;
+		z-index: 10;
+		width: 24px;
+		height: 24px;
+		border-radius: 100%;
+		background-color: rgba(62, 210, 229);
+		opacity: 0.2;
+		transition: opacity 0.3s;
+		
+		&:checked {
+			opacity: 1;
+			background-color: rgba(62, 210, 229);
+			+ svg {
+				opacity: 1;
+			}
+		}		
+	}
+
+	svg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 20;
+		width: 16px;
+		height: 16px;
+		margin: -8px 0 0 -8px;
+		opacity: 0;
+		transition: opacity 0.3s;
+		
+		path {
+			fill: #fff;
+		}
+	}	
+`;
 
 const TodoItemBlock = styled.li`
 	display: flex;
 	border-radius: 10px;
 	background-color: #fff;
-	margin-bottom: 12px;
+	margin-bottom: 14px;
 	padding: 16px;
 	box-shadow: ${styleVars.shadow};
 
-	input {
-		width: 24px;
-		height: 24px;
-		border: 1px solid #000;
-		border-radius: 100%;
+	&:last-child {
+		margin-bottom: 0;
 	}
 
 	a {
@@ -36,21 +77,35 @@ const TodoItemBlock = styled.li`
 			text-decoration: underline;
 		}
 	}
+`;
 
-	button {
-		width: 30px;
-		height: 30px;
+const TodoDeleteButton = styled.button`
+	width: 30px;
+	height: 30px;
+	opacity: 0.3;
+	transition: opacity 0.3s;
+
+	svg {
+		width: 20px;
+		height: 20px;
+		vertical-align: middle;
+
+		polygon {
+			fill: rgba(0,0,0,0.52);
+		}
+	}
+
+	&:hover {
+		opacity: 1;
 	}
 `;
 
-const TodoItem: FC<Todo> = ({ text, onClick }: Todo) => {
+const TodoItem: FC<Todo> = ({ text, onClick, onChange }: Todo) => {
 	return (
 		<TodoItemBlock>
-			<input type="checkbox" />
+			<TodoCheckBox><input type="checkbox" onChange={onChange} /><SvgCheck /></TodoCheckBox>
 			<Link to="/">{text}</Link>
-			<button type="button" onClick={onClick}>
-				메뉴
-			</button>
+			<TodoDeleteButton type="button" onClick={onClick}><SvgClose /></TodoDeleteButton>
 		</TodoItemBlock>
 	);
 };

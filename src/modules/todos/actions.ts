@@ -1,17 +1,17 @@
 import { Todo } from './types';
 
-export const LIST_REQUEST = 'LIST_REQUEST' as const;
-export const LIST_SUCCESS = 'LIST_SUCCESS' as const;
-export const LIST_FAILURE = 'LIST_FAILURE' as const;
+export const LOAD_LIST_REQUEST = 'LOAD_LIST_REQUEST' as const;
+export const LOAD_LIST_SUCCESS = 'LOAD_LIST_SUCCESS' as const;
+export const LOAD_LIST_FAILURE = 'LOAD_LIST_FAILURE' as const;
 
-export const listRequest = () => ({ type: LIST_REQUEST });
-export const listSuccess = (data: Todo[]) => ({
-	type: LIST_SUCCESS,
+export const loadListRequest = () => ({ type: LOAD_LIST_REQUEST });
+export const loadListSuccess = (data: Todo[]) => ({
+	type: LOAD_LIST_SUCCESS,
 	payload: data,
 });
-export const listFailure = () => ({ type: LIST_FAILURE });
+export const loadListFailure = () => ({ type: LOAD_LIST_FAILURE });
 
-export type ListAction =
-	| ReturnType<typeof listRequest>
-	| ReturnType<typeof listSuccess>
-	| ReturnType<typeof listFailure>;
+export type LoadListAction =
+	| ReturnType<typeof loadListRequest>
+	| ReturnType<typeof loadListSuccess>
+	| ReturnType<typeof loadListFailure>;

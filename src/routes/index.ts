@@ -1,18 +1,17 @@
 import Home from '../pages/Home';
-import Test from '../pages/Test';
+import Search from '../pages/Search';
 
-const routes = [
+const Routes = [
 	{
 		path: '/',
 		component: Home,
-		// component: Test,
 		exact: true,
 	},
 	{
-		// path: ['/', '/home'],
-		// path: '/home',
-		// component: TodoHome,
+		path: '/search',
+		component: Search,
+		exact: true
 	},
 ];
 
-export default routes;
+export default Routes;

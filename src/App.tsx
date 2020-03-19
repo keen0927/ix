@@ -12,7 +12,7 @@ function App() {
 		<Router>
 			<Switch>
 				{Routes.map(({ path, component, exact }, index) => (
-					<Route to={path} component={component} exact={exact} key={index} />
+					<Route path={path} component={component} exact={exact} key={index} />
 				))}
 				<Redirect path="*" to="/" />
 			</Switch>

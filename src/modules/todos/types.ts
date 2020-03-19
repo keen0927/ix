@@ -6,4 +6,5 @@ export type Todo = {
 	done?: boolean;
 	reference?: number[];
 	onClick?: () => void;
+	onChange?: () => void;
 };

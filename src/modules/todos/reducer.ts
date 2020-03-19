@@ -1,10 +1,10 @@
 import produce from 'immer';
 import { Todo } from './types';
 import {
-	ListAction,
-	LIST_REQUEST,
-	LIST_SUCCESS,
-	LIST_FAILURE,
+	LoadListAction,
+	LOAD_LIST_REQUEST,
+	LOAD_LIST_SUCCESS,
+	LOAD_LIST_FAILURE,
 } from './actions';
 
 interface InitialStateProps {
@@ -17,18 +17,18 @@ const initialState: InitialStateProps = {
 	page: 1,
 };
 
-const todos = (state = initialState, action: ListAction) => {
+const todos = (state = initialState, action: LoadListAction) => {
 	return produce(state, draft => {
 		switch (action.type) {
-			case LIST_REQUEST: {
+			case LOAD_LIST_REQUEST: {
 				break;
 			}
-			case LIST_SUCCESS: {
+			case LOAD_LIST_SUCCESS: {
 				const response = action.payload;
 				draft.lists = response;
 				break;
 			}
-			case LIST_FAILURE: {
+			case LOAD_LIST_FAILURE: {
 				break;
 			}
 			default: {

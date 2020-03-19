@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { listRequest } from '../modules/todos';
+import { loadListRequest } from '../modules/todos';
 import { RootState } from '../modules';
 import TodoItem from '../components/TodoItem';
 
@@ -17,7 +17,7 @@ function TodoList() {
 	console.log(lists);
 
 	useEffect(() => {
-		dispatch(listRequest());
+		dispatch(loadListRequest());
 	}, []);
 
 	const onOpenMenu = () => {

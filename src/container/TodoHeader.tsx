@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { ButtonTypeCircle } from '../static/css-in-js/styleCommon';
 import { SvgSearch, SvgWrite } from '../static/svg/svgAsset';
+import { Link } from 'react-router-dom';
 
 const TodoHeaderBlock = styled.div`
   position: relative;
@@ -16,7 +17,7 @@ const TodoHeaderBlock = styled.div`
 
   b {
     font-size: 28px;
-    color: rgba(0,0,0,0.82)
+    color: rgb(146, 82, 241);
   }
 `;
 
@@ -68,11 +69,12 @@ const ButtonWrite = styled(ButtonTypeCircle)`
 `;
 
 function TodoHeader() {
+
 	return (
     <TodoHeaderBlock>
       <strong>Hey Ryan!</strong>
       <b>What Your Plan?</b>
-      <ButtonSearch><SvgSearch /></ButtonSearch>
+      <Link to="/search"><ButtonSearch><SvgSearch /></ButtonSearch></Link>
       <InputBlock>
         <div><input type="text" placeholder="Input Your Plan..." /></div>
         <ButtonWrite type="button"><SvgWrite /></ButtonWrite>
