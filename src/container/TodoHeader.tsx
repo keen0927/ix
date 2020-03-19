@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { ButtonTypeCircle } from '../static/css-in-js/styleCommon';
+import { SvgSearch, SvgWrite } from '../static/svg/svgAsset';
 
 const TodoHeaderBlock = styled.div`
   position: relative;
@@ -18,20 +20,22 @@ const TodoHeaderBlock = styled.div`
   }
 `;
 
-const ButtonSearch = styled.button`
+const ButtonSearch = styled(ButtonTypeCircle)`
   position: absolute;
   bottom: 50px;
   right: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  background-color: #fff;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 const InputBlock = styled.div`
   display: flex;
   justify-content: space-between;
   height: 40px;
+
   div {
     display: flex;
     align-items: center;
@@ -50,11 +54,16 @@ const InputBlock = styled.div`
       color: inherit;
     }
   }
-  button {
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: #fff;
+`;
+
+const ButtonWrite = styled(ButtonTypeCircle)`
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+
+  svg {
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -63,10 +72,10 @@ function TodoHeader() {
     <TodoHeaderBlock>
       <strong>Hey Ryan!</strong>
       <b>What Your Plan?</b>
-      <ButtonSearch>검색</ButtonSearch>
+      <ButtonSearch><SvgSearch /></ButtonSearch>
       <InputBlock>
         <div><input type="text" placeholder="Input Your Plan..." /></div>
-        <button type="button">추가</button>
+        <ButtonWrite type="button"><SvgWrite /></ButtonWrite>
       </InputBlock>
     </TodoHeaderBlock>);
 }

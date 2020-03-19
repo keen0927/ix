@@ -31,6 +31,10 @@ const TodoItemBlock = styled.li`
 		font-size: 14px;
 		line-height: 1.5;
 		color: inherit;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 
 	button {

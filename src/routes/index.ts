@@ -4,8 +4,8 @@ import Test from '../pages/Test';
 const routes = [
 	{
 		path: '/',
-		// component: Home,
-		component: Test,
+		component: Home,
+		// component: Test,
 		exact: true,
 	},
 	{
