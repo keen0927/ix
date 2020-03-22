@@ -22,6 +22,7 @@ interface InitialStateProps {
 	isAddingList: boolean;
 	isTogglingList: boolean;
 	isRemovingList: boolean;
+	addListErrorReason: string;
 }
 
 const initialState: InitialStateProps = {
@@ -29,7 +30,8 @@ const initialState: InitialStateProps = {
 	page: 1,
 	isAddingList: false,
 	isTogglingList: false,
-	isRemovingList: false
+	isRemovingList: false,
+	addListErrorReason: '',
 };
 
 const todos = (state = initialState, action: LoadListAction) => {
@@ -39,20 +41,25 @@ const todos = (state = initialState, action: LoadListAction) => {
 				break;
 			}
 			case LOAD_LIST_SUCCESS: {
-				const response = action.payload;
-				draft.lists = response;
+				draft.lists = action.data;
 				break;
 			}
 			case LOAD_LIST_FAILURE: {
 				break;
 			}
 			case ADD_LIST_REQUEST: {
+				draft.isAddingList = true;
 				break;
 			}
 			case ADD_LIST_SUCCESS: {
+				draft.isAddingList = false;
+				// draft.lists.unshift(action.data);
+				console.log('ADD_LIST_SUCCESS');
 				break;
 			}
 			case ADD_LIST_FAILURE: {
+				draft.isAddingList = false;
+				// draft.addPostErrorReason = action.error;
 				break;
 			}	
 			case TOGGLE_LIST_REQUEST: {

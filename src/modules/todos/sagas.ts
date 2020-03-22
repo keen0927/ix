@@ -7,6 +7,7 @@ import {
 	ADD_LIST_REQUEST,
 	ADD_LIST_SUCCESS,
 	ADD_LIST_FAILURE} from './actions';
+import { Todo } from './types';
 
 function loadListAPI() {
 	return axios.get('http://localhost:3000/posts?_page=1&_limit=10');
@@ -17,7 +18,7 @@ function* loadList() {
 		const result = yield call(loadListAPI);
 		yield put({
 			type: LOAD_LIST_SUCCESS,
-			payload: result.data,
+			data: result.data,
 		});
 	} catch (e) {
 		console.error(e);
@@ -31,7 +32,7 @@ function* watchLoadList() {
 	yield takeEvery(LOAD_LIST_REQUEST, loadList);
 }
 
-function addListAPI(postData: any) {
+function addListAPI(postData: Todo[]) {
 	return axios.post('http://localhost:3000/posts', postData);
 }
 
@@ -40,12 +41,13 @@ function* addList(action: any) {
 		const result = yield call(addListAPI, action.data);
 		yield put({
 			type: ADD_LIST_SUCCESS,
-			payload: result.data,
+			data: result.data,
 		});
 	} catch (e) {
 		console.error(e);
 		yield put({
 			type: ADD_LIST_FAILURE,
+			error: e
 		});
 	}
 }

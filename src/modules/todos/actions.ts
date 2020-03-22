@@ -21,28 +21,31 @@ export const REMOVE_LIST_FAILURE = 'REMOVE_LIST_FAILURE' as const;
 export const loadListRequest = () => ({ type: LOAD_LIST_REQUEST });
 export const loadListSuccess = (data: Todo[]) => ({
 	type: LOAD_LIST_SUCCESS,
-	payload: data,
+	data: data,
 });
 export const loadListFailure = () => ({ type: LOAD_LIST_FAILURE });
 
 export const addListRequest = () => ({ type: ADD_LIST_REQUEST });
 export const addListSuccess = (data: Todo[]) => ({
 	type: ADD_LIST_SUCCESS,
-	payload: data,
+	data: data,
 });
-export const addListFailure = () => ({ type: ADD_LIST_FAILURE });
+export const addListFailure = (data: string) => ({
+	type: ADD_LIST_FAILURE,
+	data: data,
+});
 
 export const toggleListRequest = () => ({ type: TOGGLE_LIST_REQUEST });
 export const toggleListSuccess = (data: Todo[]) => ({
 	type: TOGGLE_LIST_SUCCESS,
-	payload: data,
+	data: data,
 });
 export const toggleListFailure = () => ({ type: TOGGLE_LIST_FAILURE });
 
 export const removeListRequest = () => ({ type: REMOVE_LIST_REQUEST });
 export const removeListSuccess = (data: Todo[]) => ({
 	type: REMOVE_LIST_SUCCESS,
-	payload: data,
+	data: data,
 });
 export const removeListFailure = () => ({ type: REMOVE_LIST_FAILURE });
 
