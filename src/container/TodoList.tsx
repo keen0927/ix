@@ -14,8 +14,6 @@ function TodoList() {
 	const dispatch = useDispatch();
 	const lists = useSelector((state: RootState) => state.todos.lists);
 
-	console.log(lists);
-
 	useEffect(() => {
 		dispatch(loadListRequest());
 	}, []);
@@ -23,6 +21,8 @@ function TodoList() {
 	const onOpenMenu = () => {
 		console.log('onOpenMenu');
 	};
+	
+	if(lists.length === 0) return null;
 
 	return (
 		<TodoListBlock>

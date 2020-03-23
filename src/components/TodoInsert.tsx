@@ -1,9 +1,10 @@
-import React, { useState, useCallback, ChangeEvent } from 'react';
+import React, { FC, useState, useCallback, ChangeEvent, FormEvent } from 'react';
 import styled from '@emotion/styled';
+import { useDispatch } from 'react-redux';
 import { ButtonTypeCircle } from '../static/css-in-js/styleCommon';
 import { SvgWrite } from '../static/svg/svgAsset';
 
-const TodoInsertBlock = styled.div`
+const TodoInsertBlock = styled.form`
   display: flex;
   justify-content: space-between;
   height: 40px;
@@ -39,19 +40,30 @@ const ButtonWrite = styled(ButtonTypeCircle)`
   }
 `;
 
-const TodoInsert: React.FC = () => {
+const TodoInsert: FC = () => {
 
   const [todo, setTodo] = useState('');
+  const dispatch = useDispatch();
 
   const onChange = useCallback<(e: ChangeEvent<HTMLInputElement>) => void>((e) => {
     setTodo(e.target.value);
   },[todo]);
 
-  console.log('todo : ', todo);
+  const onSubmit = useCallback<(e: FormEvent) => void>((e) => {
+    e.preventDefault();
+    const data = {
+      id: 1,
+      text: todo,
+      createDate: '',
+      editDate: '',
+      done: false,
+      reference: [],
+    };
 
+  },[]);
 
   return (
-    <TodoInsertBlock>
+    <TodoInsertBlock onSubmit={onSubmit}>
       <div><input type="text" onChange={onChange} placeholder="Input Your Plan..." /></div>
       <ButtonWrite type="button"><SvgWrite /></ButtonWrite>
     </TodoInsertBlock>
