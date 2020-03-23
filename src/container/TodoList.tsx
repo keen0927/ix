@@ -12,7 +12,7 @@ const TodoListBlock = styled.ul`
 function TodoList() {
 
 	const dispatch = useDispatch();
-	const lists = useSelector((state: RootState) => state.todos.lists);
+	const viewLists = useSelector((state: RootState) => state.todos.viewLists);
 
 	useEffect(() => {
 		dispatch(loadListRequest());
@@ -22,11 +22,11 @@ function TodoList() {
 		console.log('onOpenMenu');
 	};
 	
-	if(lists.length === 0) return null;
+	if(viewLists.length === 0) return null;
 
 	return (
 		<TodoListBlock>
-			{lists && lists.map((v, i) => <TodoItem text={v.text} onClick={onOpenMenu} key={i} />)}
+			{viewLists && viewLists.map((v, i) => <TodoItem text={v.text} onClick={onOpenMenu} key={i} />)}
 		</TodoListBlock>
 	);
 }

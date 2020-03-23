@@ -1,8 +1,10 @@
 import React, { FC, useState, useCallback, ChangeEvent, FormEvent } from 'react';
 import styled from '@emotion/styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ButtonTypeCircle } from '../static/css-in-js/styleCommon';
 import { SvgWrite } from '../static/svg/svgAsset';
+import { addListRequest } from '../modules/todos';
+import { RootState } from '../modules';
 
 const TodoInsertBlock = styled.form`
   display: flex;
@@ -44,6 +46,7 @@ const TodoInsert: FC = () => {
 
   const [todo, setTodo] = useState('');
   const dispatch = useDispatch();
+  const currentId = useSelector((state: RootState) => state.todos.currentListId);
 
   const onChange = useCallback<(e: ChangeEvent<HTMLInputElement>) => void>((e) => {
     setTodo(e.target.value);
@@ -51,8 +54,12 @@ const TodoInsert: FC = () => {
 
   const onSubmit = useCallback<(e: FormEvent) => void>((e) => {
     e.preventDefault();
+
+    console.log('여기');
+
+    // ID 조회
     const data = {
-      id: 1,
+      id: currentId + 1,
       text: todo,
       createDate: '',
       editDate: '',
@@ -60,12 +67,14 @@ const TodoInsert: FC = () => {
       reference: [],
     };
 
-  },[]);
+    dispatch(addListRequest(data));
+
+  },[todo]);
 
   return (
     <TodoInsertBlock onSubmit={onSubmit}>
       <div><input type="text" onChange={onChange} placeholder="Input Your Plan..." /></div>
-      <ButtonWrite type="button"><SvgWrite /></ButtonWrite>
+      <ButtonWrite type="submit"><SvgWrite /></ButtonWrite>
     </TodoInsertBlock>
   );
 };

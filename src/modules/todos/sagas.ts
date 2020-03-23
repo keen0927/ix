@@ -9,8 +9,9 @@ import {
 	ADD_LIST_FAILURE} from './actions';
 import { Todo } from './types';
 
+// Load List
 function loadListAPI() {
-	return axios.get('http://localhost:3000/posts?_page=1&_limit=10');
+	return axios.get('http://localhost:3000/posts');
 }
 
 function* loadList() {
@@ -32,17 +33,20 @@ function* watchLoadList() {
 	yield takeEvery(LOAD_LIST_REQUEST, loadList);
 }
 
-function addListAPI(postData: Todo[]) {
+// Add List
+function addListAPI(postData: Todo) {
 	return axios.post('http://localhost:3000/posts', postData);
 }
 
 function* addList(action: any) {
 	try {
 		const result = yield call(addListAPI, action.data);
-		yield put({
-			type: ADD_LIST_SUCCESS,
-			data: result.data,
-		});
+
+		console.log('success : ', result);
+		// yield put({
+		// 	type: ADD_LIST_SUCCESS,
+		// 	data: result.data,
+		// });
 	} catch (e) {
 		console.error(e);
 		yield put({

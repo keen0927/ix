@@ -18,7 +18,9 @@ import {
 
 interface InitialStateProps {
 	lists: Todo[];
+	viewLists: Todo[];
 	page: number;
+	currentListId: number;
 	isAddingList: boolean;
 	isTogglingList: boolean;
 	isRemovingList: boolean;
@@ -27,7 +29,9 @@ interface InitialStateProps {
 
 const initialState: InitialStateProps = {
 	lists: [],
+	viewLists: [],
 	page: 1,
+	currentListId: 0,
 	isAddingList: false,
 	isTogglingList: false,
 	isRemovingList: false,
@@ -41,7 +45,9 @@ const todos = (state = initialState, action: LoadListAction) => {
 				break;
 			}
 			case LOAD_LIST_SUCCESS: {
-				draft.lists = action.data;
+				draft.lists = action.data.reverse();
+				draft.currentListId = draft.lists[0].id!;
+				draft.viewLists = draft.lists.slice(0,10);
 				break;
 			}
 			case LOAD_LIST_FAILURE: {
@@ -49,6 +55,7 @@ const todos = (state = initialState, action: LoadListAction) => {
 			}
 			case ADD_LIST_REQUEST: {
 				draft.isAddingList = true;
+				
 				break;
 			}
 			case ADD_LIST_SUCCESS: {

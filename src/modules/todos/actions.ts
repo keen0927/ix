@@ -18,6 +18,7 @@ export const REMOVE_LIST_SUCCESS = 'REMOVE_LIST_SUCCESS' as const;
 export const REMOVE_LIST_FAILURE = 'REMOVE_LIST_FAILURE' as const;
 
 // Action Create Function
+// Load List
 export const loadListRequest = () => ({ type: LOAD_LIST_REQUEST });
 export const loadListSuccess = (data: Todo[]) => ({
 	type: LOAD_LIST_SUCCESS,
@@ -25,7 +26,11 @@ export const loadListSuccess = (data: Todo[]) => ({
 });
 export const loadListFailure = () => ({ type: LOAD_LIST_FAILURE });
 
-export const addListRequest = () => ({ type: ADD_LIST_REQUEST });
+// Add List
+export const addListRequest = (data: Todo) => ({ 
+	type: ADD_LIST_REQUEST,
+	data: data
+});
 export const addListSuccess = (data: Todo[]) => ({
 	type: ADD_LIST_SUCCESS,
 	data: data,
@@ -35,6 +40,7 @@ export const addListFailure = (data: string) => ({
 	data: data,
 });
 
+// Toggle List
 export const toggleListRequest = () => ({ type: TOGGLE_LIST_REQUEST });
 export const toggleListSuccess = (data: Todo[]) => ({
 	type: TOGGLE_LIST_SUCCESS,
@@ -42,6 +48,7 @@ export const toggleListSuccess = (data: Todo[]) => ({
 });
 export const toggleListFailure = () => ({ type: TOGGLE_LIST_FAILURE });
 
+// Remove List
 export const removeListRequest = () => ({ type: REMOVE_LIST_REQUEST });
 export const removeListSuccess = (data: Todo[]) => ({
 	type: REMOVE_LIST_SUCCESS,
