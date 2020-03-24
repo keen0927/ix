@@ -55,18 +55,19 @@ const todos = (state = initialState, action: LoadListAction) => {
 			}
 			case ADD_LIST_REQUEST: {
 				draft.isAddingList = true;
-				
 				break;
 			}
 			case ADD_LIST_SUCCESS: {
 				draft.isAddingList = false;
-				// draft.lists.unshift(action.data);
-				console.log('ADD_LIST_SUCCESS');
+				draft.lists.unshift(action.data);
+				draft.viewLists.unshift(action.data);
+				draft.viewLists.pop();
+				draft.currentListId++;
 				break;
 			}
 			case ADD_LIST_FAILURE: {
 				draft.isAddingList = false;
-				// draft.addPostErrorReason = action.error;
+				draft.addListErrorReason = action.error;
 				break;
 			}	
 			case TOGGLE_LIST_REQUEST: {

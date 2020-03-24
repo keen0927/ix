@@ -35,18 +35,17 @@ function* watchLoadList() {
 
 // Add List
 function addListAPI(postData: Todo) {
+	console.log('postData : ',postData);
 	return axios.post('http://localhost:3000/posts', postData);
 }
 
 function* addList(action: any) {
 	try {
 		const result = yield call(addListAPI, action.data);
-
-		console.log('success : ', result);
-		// yield put({
-		// 	type: ADD_LIST_SUCCESS,
-		// 	data: result.data,
-		// });
+		yield put({
+			type: ADD_LIST_SUCCESS,
+			data: result.data,
+		});
 	} catch (e) {
 		console.error(e);
 		yield put({

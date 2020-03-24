@@ -1,12 +1,13 @@
-import React, { FC, useState, useCallback, ChangeEvent, FormEvent } from 'react';
+import React, { FC, useState, useCallback, useRef, ChangeEvent, FormEvent } from 'react';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonTypeCircle } from '../static/css-in-js/styleCommon';
 import { SvgWrite } from '../static/svg/svgAsset';
 import { addListRequest } from '../modules/todos';
 import { RootState } from '../modules';
+import dayjs from 'dayjs';
 
-const TodoInsertBlock = styled.form`
+const TodoInsertBlock = styled.div`
   display: flex;
   justify-content: space-between;
   height: 40px;
@@ -47,6 +48,7 @@ const TodoInsert: FC = () => {
   const [todo, setTodo] = useState('');
   const dispatch = useDispatch();
   const currentId = useSelector((state: RootState) => state.todos.currentListId);
+  const inputEl = useRef<HTMLInputElement>(null);
 
   const onChange = useCallback<(e: ChangeEvent<HTMLInputElement>) => void>((e) => {
     setTodo(e.target.value);
@@ -55,27 +57,38 @@ const TodoInsert: FC = () => {
   const onSubmit = useCallback<(e: FormEvent) => void>((e) => {
     e.preventDefault();
 
-    console.log('여기');
+    if (!todo || !todo.trim()) {
+      return alert('게시글을 작성하세요.');
+    }
 
-    // ID 조회
+    const currentDay = dayjs().format('YYYY-MM-DD');
+
     const data = {
       id: currentId + 1,
       text: todo,
-      createDate: '',
+      createDate: currentDay,
       editDate: '',
       done: false,
       reference: [],
     };
 
     dispatch(addListRequest(data));
+    
+    setTodo('');
+    
+    if(inputEl) {
+      inputEl.current?.focus();
+    }
 
   },[todo]);
 
   return (
-    <TodoInsertBlock onSubmit={onSubmit}>
-      <div><input type="text" onChange={onChange} placeholder="Input Your Plan..." /></div>
-      <ButtonWrite type="submit"><SvgWrite /></ButtonWrite>
-    </TodoInsertBlock>
+    <form onSubmit={onSubmit}>
+      <TodoInsertBlock>
+        <div><input type="text" ref={inputEl} value={todo} onChange={onChange} onSubmit={onSubmit} placeholder="Input Your Plan..." /></div>
+        <ButtonWrite type="submit"><SvgWrite /></ButtonWrite>
+      </TodoInsertBlock>
+    </form>
   );
 };
 

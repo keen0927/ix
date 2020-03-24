@@ -22,7 +22,7 @@ export const REMOVE_LIST_FAILURE = 'REMOVE_LIST_FAILURE' as const;
 export const loadListRequest = () => ({ type: LOAD_LIST_REQUEST });
 export const loadListSuccess = (data: Todo[]) => ({
 	type: LOAD_LIST_SUCCESS,
-	data: data,
+	data: data
 });
 export const loadListFailure = () => ({ type: LOAD_LIST_FAILURE });
 
@@ -31,20 +31,20 @@ export const addListRequest = (data: Todo) => ({
 	type: ADD_LIST_REQUEST,
 	data: data
 });
-export const addListSuccess = (data: Todo[]) => ({
+export const addListSuccess = (data: Todo) => ({
 	type: ADD_LIST_SUCCESS,
-	data: data,
+	data: data
 });
-export const addListFailure = (data: string) => ({
+export const addListFailure = (error: string) => ({
 	type: ADD_LIST_FAILURE,
-	data: data,
+	error: error
 });
 
 // Toggle List
 export const toggleListRequest = () => ({ type: TOGGLE_LIST_REQUEST });
 export const toggleListSuccess = (data: Todo[]) => ({
 	type: TOGGLE_LIST_SUCCESS,
-	data: data,
+	data: data
 });
 export const toggleListFailure = () => ({ type: TOGGLE_LIST_FAILURE });
 
@@ -52,7 +52,7 @@ export const toggleListFailure = () => ({ type: TOGGLE_LIST_FAILURE });
 export const removeListRequest = () => ({ type: REMOVE_LIST_REQUEST });
 export const removeListSuccess = (data: Todo[]) => ({
 	type: REMOVE_LIST_SUCCESS,
-	data: data,
+	data: data
 });
 export const removeListFailure = () => ({ type: REMOVE_LIST_FAILURE });
 
