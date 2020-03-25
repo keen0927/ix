@@ -2,9 +2,8 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import styleVars from '../static/css-in-js/styleVars';
-import { Todo } from '../modules/todos';
 import { SvgCheck, SvgClose } from '../static/svg/svgAsset';
-
+import { TodoItemProps } from '../modules/todos';
 
 const TodoCheckBox = styled.label`
 	display: block;
@@ -100,12 +99,32 @@ const TodoDeleteButton = styled.button`
 	}
 `;
 
-const TodoItem: FC<Todo> = ({ text, onClick, onChange }: Todo) => {
+const TodoItem: FC<TodoItemProps> = ({ viewList, onToggle, onRemove }: TodoItemProps) => {
+
+	const handleToggle = () => {
+		onToggle(viewList.id);
+	};
+
+	const handleRemove = () => {
+		onRemove(viewList.id);
+	};
+
 	return (
 		<TodoItemBlock>
-			<TodoCheckBox><input type="checkbox" onChange={onChange} /><SvgCheck /></TodoCheckBox>
-			<Link to="/">{text}</Link>
-			<TodoDeleteButton type="button" onClick={onClick}><SvgClose /></TodoDeleteButton>
+			<TodoCheckBox>
+				<input 
+					type="checkbox"
+					onChange={handleToggle}
+				/>
+				<SvgCheck />
+			</TodoCheckBox>
+			<Link to="/">{viewList.text}</Link>
+			<TodoDeleteButton 
+				type="button"
+				onClick={handleRemove}
+			>
+				<SvgClose />
+			</TodoDeleteButton>
 		</TodoItemBlock>
 	);
 };

@@ -7,7 +7,7 @@ import {
 	ADD_LIST_REQUEST,
 	ADD_LIST_SUCCESS,
 	ADD_LIST_FAILURE} from './actions';
-import { Todo } from './types';
+import { TodoProps } from './types';
 
 // Load List
 function loadListAPI() {
@@ -34,7 +34,7 @@ function* watchLoadList() {
 }
 
 // Add List
-function addListAPI(postData: Todo) {
+function addListAPI(postData: TodoProps) {
 	console.log('postData : ',postData);
 	return axios.post('http://localhost:3000/posts', postData);
 }

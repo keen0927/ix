@@ -12,21 +12,31 @@ const TodoListBlock = styled.ul`
 function TodoList() {
 
 	const dispatch = useDispatch();
-	const viewLists = useSelector((state: RootState) => state.todos.viewLists);
+	const { viewLists } = useSelector((state: RootState) => state.todos);
 
 	useEffect(() => {
 		dispatch(loadListRequest());
 	}, []);
 
-	const onOpenMenu = () => {
-		console.log('onOpenMenu');
+	const onToggle = (id: number) => {
+		console.log('toggle',id);
+	};	
+
+	const onRemove = (id: number) => {
+		console.log('remove',id);
 	};
 	
-	if(viewLists.length === 0) return null;
+	if (viewLists.length === 0) return null;
 
 	return (
 		<TodoListBlock>
-			{viewLists && viewLists.map((v, i) => <TodoItem text={v.text} onClick={onOpenMenu} key={i} />)}
+			{viewLists.map((viewList, i) => 
+				<TodoItem 
+					viewList={viewList}
+					onToggle={onToggle}
+					onRemove={onRemove}
+					key={i}
+				/>)}
 		</TodoListBlock>
 	);
 }

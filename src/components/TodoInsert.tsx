@@ -32,11 +32,17 @@ const TodoInsertBlock = styled.div`
   }
 `;
 
-const ButtonWrite = styled(ButtonTypeCircle)`
+// const ButtonWrite = styled(ButtonTypeCircle)<{ disabled: boolean }>`
+const ButtonWrite = styled(ButtonTypeCircle)<{ disabled: boolean }>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
+  /* border: ${props => props.disabled ? '1px solid red' : '1px solid blue'}; */
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+  
   svg {
     width: 20px;
     height: 20px;
@@ -47,7 +53,7 @@ const TodoInsert: FC = () => {
 
   const [todo, setTodo] = useState('');
   const dispatch = useDispatch();
-  const currentId = useSelector((state: RootState) => state.todos.currentListId);
+  const { currentListId, isAddingList } = useSelector((state: RootState) => state.todos);
   const inputEl = useRef<HTMLInputElement>(null);
 
   const onChange = useCallback<(e: ChangeEvent<HTMLInputElement>) => void>((e) => {
@@ -64,7 +70,7 @@ const TodoInsert: FC = () => {
     const currentDay = dayjs().format('YYYY-MM-DD');
 
     const data = {
-      id: currentId + 1,
+      id: currentListId + 1,
       text: todo,
       createDate: currentDay,
       editDate: '',
@@ -86,7 +92,7 @@ const TodoInsert: FC = () => {
     <form onSubmit={onSubmit}>
       <TodoInsertBlock>
         <div><input type="text" ref={inputEl} value={todo} onChange={onChange} onSubmit={onSubmit} placeholder="Input Your Plan..." /></div>
-        <ButtonWrite type="submit"><SvgWrite /></ButtonWrite>
+        <ButtonWrite type="submit" disabled={isAddingList} ><SvgWrite /></ButtonWrite>
       </TodoInsertBlock>
     </form>
   );

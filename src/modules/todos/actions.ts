@@ -1,4 +1,4 @@
-import { Todo } from './types';
+import { TodoProps } from './types';
 
 // Actions
 export const LOAD_LIST_REQUEST = 'LOAD_LIST_REQUEST' as const;
@@ -20,18 +20,18 @@ export const REMOVE_LIST_FAILURE = 'REMOVE_LIST_FAILURE' as const;
 // Action Create Function
 // Load List
 export const loadListRequest = () => ({ type: LOAD_LIST_REQUEST });
-export const loadListSuccess = (data: Todo[]) => ({
+export const loadListSuccess = (data: TodoProps[]) => ({
 	type: LOAD_LIST_SUCCESS,
 	data: data
 });
 export const loadListFailure = () => ({ type: LOAD_LIST_FAILURE });
 
 // Add List
-export const addListRequest = (data: Todo) => ({ 
+export const addListRequest = (data: TodoProps) => ({ 
 	type: ADD_LIST_REQUEST,
 	data: data
 });
-export const addListSuccess = (data: Todo) => ({
+export const addListSuccess = (data: TodoProps) => ({
 	type: ADD_LIST_SUCCESS,
 	data: data
 });
@@ -42,7 +42,7 @@ export const addListFailure = (error: string) => ({
 
 // Toggle List
 export const toggleListRequest = () => ({ type: TOGGLE_LIST_REQUEST });
-export const toggleListSuccess = (data: Todo[]) => ({
+export const toggleListSuccess = (data: TodoProps[]) => ({
 	type: TOGGLE_LIST_SUCCESS,
 	data: data
 });
@@ -50,7 +50,7 @@ export const toggleListFailure = () => ({ type: TOGGLE_LIST_FAILURE });
 
 // Remove List
 export const removeListRequest = () => ({ type: REMOVE_LIST_REQUEST });
-export const removeListSuccess = (data: Todo[]) => ({
+export const removeListSuccess = (data: TodoProps[]) => ({
 	type: REMOVE_LIST_SUCCESS,
 	data: data
 });

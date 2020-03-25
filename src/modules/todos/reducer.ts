@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { Todo } from './types';
+import { TodoProps } from './types';
 import {
 	LoadListAction,
 	LOAD_LIST_REQUEST,
@@ -17,8 +17,8 @@ import {
 } from './actions';
 
 interface InitialStateProps {
-	lists: Todo[];
-	viewLists: Todo[];
+	lists: TodoProps[];
+	viewLists: TodoProps[];
 	page: number;
 	currentListId: number;
 	isAddingList: boolean;
