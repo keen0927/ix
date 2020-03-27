@@ -41,20 +41,24 @@ export const addListFailure = (error: string) => ({
 });
 
 // Toggle List
-export const toggleListRequest = () => ({ type: TOGGLE_LIST_REQUEST });
-export const toggleListSuccess = (data: TodoProps[]) => ({
-	type: TOGGLE_LIST_SUCCESS,
-	data: data
+export const toggleListRequest = (id: number) => ({ 
+	type: TOGGLE_LIST_REQUEST,
+	id: id
 });
-export const toggleListFailure = () => ({ type: TOGGLE_LIST_FAILURE });
 
 // Remove List
-export const removeListRequest = () => ({ type: REMOVE_LIST_REQUEST });
-export const removeListSuccess = (data: TodoProps[]) => ({
-	type: REMOVE_LIST_SUCCESS,
-	data: data
+export const removeListRequest = (id: number) => ({ 
+	type: REMOVE_LIST_REQUEST,
+	id: id
 });
-export const removeListFailure = () => ({ type: REMOVE_LIST_FAILURE });
+export const removeListSuccess = (id: number) => ({
+	type: REMOVE_LIST_SUCCESS,
+	id: id
+});
+export const removeListFailure = (error: string) => ({
+	type: REMOVE_LIST_FAILURE,
+	error: error
+});
 
 // Return Type Action
 export type LoadListAction =
@@ -65,8 +69,6 @@ export type LoadListAction =
 	| ReturnType<typeof addListSuccess>
 	| ReturnType<typeof addListFailure>	
 	| ReturnType<typeof toggleListRequest>
-	| ReturnType<typeof toggleListSuccess>
-	| ReturnType<typeof toggleListFailure>
-	| ReturnType<typeof removeListRequest>
-	| ReturnType<typeof removeListSuccess>
+	| ReturnType<typeof removeListRequest>		
+	| ReturnType<typeof removeListSuccess>		
 	| ReturnType<typeof removeListFailure>;		

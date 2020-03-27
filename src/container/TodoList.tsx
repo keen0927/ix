@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadListRequest } from '../modules/todos';
+import { loadListRequest, toggleListRequest, removeListRequest } from '../modules/todos';
 import { RootState } from '../modules';
 import TodoItem from '../components/TodoItem';
 
@@ -19,14 +19,14 @@ function TodoList() {
 	}, []);
 
 	const onToggle = (id: number) => {
-		console.log('toggle',id);
+		dispatch(toggleListRequest(id));
 	};	
 
 	const onRemove = (id: number) => {
-		console.log('remove',id);
+		dispatch(removeListRequest(id));
 	};
 	
-	if (viewLists.length === 0) return null;
+	if (viewLists.length === 0) return <div>Skeleton</div>;
 
 	return (
 		<TodoListBlock>

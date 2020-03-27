@@ -1,5 +1,5 @@
 const styleVars = {
-	shadow: '0 1px 8px 3px rgba(0,0,0,0.03)',
+	shadow: '0 1px 10px 2px rgba(0,0,0,0.06)',
 	red: 'rgba(0,0,0,0.87)',
 };
 

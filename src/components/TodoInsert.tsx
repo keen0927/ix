@@ -32,12 +32,10 @@ const TodoInsertBlock = styled.div`
   }
 `;
 
-// const ButtonWrite = styled(ButtonTypeCircle)<{ disabled: boolean }>`
 const ButtonWrite = styled(ButtonTypeCircle)<{ disabled: boolean }>`
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  /* border: ${props => props.disabled ? '1px solid red' : '1px solid blue'}; */
 
   &:disabled {
     cursor: not-allowed;

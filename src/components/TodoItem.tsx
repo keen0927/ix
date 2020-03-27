@@ -5,30 +5,15 @@ import styleVars from '../static/css-in-js/styleVars';
 import { SvgCheck, SvgClose } from '../static/svg/svgAsset';
 import { TodoItemProps } from '../modules/todos';
 
-const TodoCheckBox = styled.label`
+const TodoCheckBox = styled.span<{ done: boolean }>`
 	display: block;
 	position: relative;
 	width: 24px;
 	height: 24px;
-
-	input {
-		position: relative;
-		z-index: 10;
-		width: 24px;
-		height: 24px;
-		border-radius: 100%;
-		background-color: rgba(62, 210, 229);
-		opacity: 0.2;
-		transition: opacity 0.3s;
-		
-		&:checked {
-			opacity: 1;
-			background-color: rgba(62, 210, 229);
-			+ svg {
-				opacity: 1;
-			}
-		}		
-	}
+	border-radius: 100%;
+	background-color: rgba(62, 210, 229);
+	opacity: ${props => (props.done ? 1 : 0.2 )};
+	transition: opacity 0.3s;
 
 	svg {
 		position: absolute;
@@ -38,7 +23,7 @@ const TodoCheckBox = styled.label`
 		width: 16px;
 		height: 16px;
 		margin: -8px 0 0 -8px;
-		opacity: 0;
+		opacity: ${props => (props.done ? 1 : 0)};
 		transition: opacity 0.3s;
 		
 		path {
@@ -47,7 +32,7 @@ const TodoCheckBox = styled.label`
 	}	
 `;
 
-const TodoItemBlock = styled.li`
+const TodoItemBlock = styled.li<{done: boolean}>`
 	display: flex;
 	border-radius: 10px;
 	background-color: #fff;
@@ -71,6 +56,7 @@ const TodoItemBlock = styled.li`
 		font-size: 14px;
 		line-height: 1.5;
 		color: inherit;
+		text-decoration: ${props => (props.done ? 'line-through' : '')};
 
 		&:hover {
 			text-decoration: underline;
@@ -101,6 +87,7 @@ const TodoDeleteButton = styled.button`
 
 const TodoItem: FC<TodoItemProps> = ({ viewList, onToggle, onRemove }: TodoItemProps) => {
 
+	const { text, done } = viewList;
 	const handleToggle = () => {
 		onToggle(viewList.id);
 	};
@@ -110,15 +97,11 @@ const TodoItem: FC<TodoItemProps> = ({ viewList, onToggle, onRemove }: TodoItemP
 	};
 
 	return (
-		<TodoItemBlock>
-			<TodoCheckBox>
-				<input 
-					type="checkbox"
-					onChange={handleToggle}
-				/>
+		<TodoItemBlock done={done}>
+			<TodoCheckBox onClick={handleToggle} done={done}>
 				<SvgCheck />
 			</TodoCheckBox>
-			<Link to="/">{viewList.text}</Link>
+			<Link to="/" >{text}</Link>
 			<TodoDeleteButton 
 				type="button"
 				onClick={handleRemove}

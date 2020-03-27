@@ -9,11 +9,9 @@ import {
 	ADD_LIST_SUCCESS,
 	ADD_LIST_FAILURE,
 	TOGGLE_LIST_REQUEST,
-	TOGGLE_LIST_SUCCESS,
-	TOGGLE_LIST_FAILURE,
 	REMOVE_LIST_REQUEST,
 	REMOVE_LIST_SUCCESS,
-	REMOVE_LIST_FAILURE
+	REMOVE_LIST_FAILURE,
 } from './actions';
 
 interface InitialStateProps {
@@ -22,7 +20,6 @@ interface InitialStateProps {
 	page: number;
 	currentListId: number;
 	isAddingList: boolean;
-	isTogglingList: boolean;
 	isRemovingList: boolean;
 	addListErrorReason: string;
 }
@@ -33,7 +30,6 @@ const initialState: InitialStateProps = {
 	page: 1,
 	currentListId: 0,
 	isAddingList: false,
-	isTogglingList: false,
 	isRemovingList: false,
 	addListErrorReason: '',
 };
@@ -71,29 +67,30 @@ const todos = (state = initialState, action: LoadListAction) => {
 				break;
 			}	
 			case TOGGLE_LIST_REQUEST: {
+				const index = draft.viewLists.findIndex(v => v.id === action.id);
+				draft.lists[index].done = !draft.lists[index].done;
+				draft.viewLists[index].done = !draft.viewLists[index].done;
 				break;
 			}
-			case TOGGLE_LIST_SUCCESS: {
-				break;
-			}
-			case TOGGLE_LIST_FAILURE: {
-				break;
-			}	
 			case REMOVE_LIST_REQUEST: {
+				draft.isRemovingList = true;
 				break;
 			}
 			case REMOVE_LIST_SUCCESS: {
+				draft.isRemovingList = false;
+				const index = draft.viewLists.findIndex(v => v.id === action.id);
+				draft.lists.splice(index,1);
+				draft.viewLists.splice(index,1);
 				break;
 			}
 			case REMOVE_LIST_FAILURE: {
+				draft.isRemovingList = false;
+				draft.addListErrorReason = action.error;
 				break;
-			}									
+			}	
 			default: {
 				break;
 			}
-
-
-			
 		}
 	});
 };
