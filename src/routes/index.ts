@@ -10,7 +10,7 @@ const Routes = [
 	{
 		path: '/search',
 		component: Search,
-		exact: true
+		exact: true,
 	},
 ];
 

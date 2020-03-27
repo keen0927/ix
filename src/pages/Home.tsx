@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import TodoHeader from '../container/TodoHeader';
 import TodoList from '../container/TodoList';
 import TodoFooter from '../container/TodoFooter';
+import ToastPopup from '../components/ToastPopup';
 
 const HomeBlock = styled.div`
 	margin: 0 24px;
@@ -16,6 +17,7 @@ function Home() {
 			<TodoHeader />
 			<TodoList />
 			<TodoFooter />
+			<ToastPopup />
 		</HomeBlock>
 	);
 }

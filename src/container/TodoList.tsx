@@ -10,7 +10,6 @@ const TodoListBlock = styled.ul`
 `;
 
 function TodoList() {
-
 	const dispatch = useDispatch();
 	const { viewLists } = useSelector((state: RootState) => state.todos);
 
@@ -19,24 +18,25 @@ function TodoList() {
 	}, []);
 
 	const onToggle = (id: number) => {
-		console.log('toggle',id);
-	};	
+		console.log('toggle', id);
+	};
 
 	const onRemove = (id: number) => {
-		console.log('remove',id);
+		console.log('remove', id);
 	};
-	
+
 	if (viewLists.length === 0) return null;
 
 	return (
 		<TodoListBlock>
-			{viewLists.map((viewList, i) => 
-				<TodoItem 
+			{viewLists.map((viewList, i) => (
+				<TodoItem
 					viewList={viewList}
 					onToggle={onToggle}
 					onRemove={onRemove}
 					key={i}
-				/>)}
+				/>
+			))}
 		</TodoListBlock>
 	);
 }

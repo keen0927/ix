@@ -10,5 +10,5 @@ export type TodoProps = {
 export type TodoItemProps = {
 	viewList: TodoProps;
 	onToggle: (id: number) => void;
-	onRemove: (id: number) => void;	
+	onRemove: (id: number) => void;
 };

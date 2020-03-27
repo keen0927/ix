@@ -6,28 +6,28 @@ import { SvgCheck, SvgClose } from '../static/svg/svgAsset';
 import { TodoItemProps } from '../modules/todos';
 
 const TodoCheckBox = styled.label`
-	display: block;
+	/* display: block;
 	position: relative;
 	width: 24px;
-	height: 24px;
+	height: 24px; */
 
 	input {
-		position: relative;
+		/* position: relative;
 		z-index: 10;
 		width: 24px;
 		height: 24px;
 		border-radius: 100%;
 		background-color: rgba(62, 210, 229);
 		opacity: 0.2;
-		transition: opacity 0.3s;
-		
+		transition: opacity 0.3s; */
+
 		&:checked {
 			opacity: 1;
 			background-color: rgba(62, 210, 229);
 			+ svg {
 				opacity: 1;
 			}
-		}		
+		}
 	}
 
 	svg {
@@ -40,27 +40,27 @@ const TodoCheckBox = styled.label`
 		margin: -8px 0 0 -8px;
 		opacity: 0;
 		transition: opacity 0.3s;
-		
+
 		path {
 			fill: #fff;
 		}
-	}	
+	}
 `;
 
 const TodoItemBlock = styled.li`
-	display: flex;
+	/* display: flex;
 	border-radius: 10px;
 	background-color: #fff;
 	margin-bottom: 14px;
 	padding: 16px;
-	box-shadow: ${styleVars.shadow};
+	box-shadow: ${styleVars.shadow}; */
 
 	&:last-child {
-		margin-bottom: 0;
+		/* margin-bottom: 0; */
 	}
 
 	a {
-		flex: 1;
+		/* flex: 1;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
@@ -70,7 +70,7 @@ const TodoItemBlock = styled.li`
 		word-wrap: break-word;
 		font-size: 14px;
 		line-height: 1.5;
-		color: inherit;
+		color: inherit; */
 
 		&:hover {
 			text-decoration: underline;
@@ -90,7 +90,7 @@ const TodoDeleteButton = styled.button`
 		vertical-align: middle;
 
 		polygon {
-			fill: rgba(0,0,0,0.52);
+			fill: rgba(0, 0, 0, 0.52);
 		}
 	}
 
@@ -99,8 +99,11 @@ const TodoDeleteButton = styled.button`
 	}
 `;
 
-const TodoItem: FC<TodoItemProps> = ({ viewList, onToggle, onRemove }: TodoItemProps) => {
-
+const TodoItem: FC<TodoItemProps> = ({
+	viewList,
+	onToggle,
+	onRemove,
+}: TodoItemProps) => {
 	const handleToggle = () => {
 		onToggle(viewList.id);
 	};
@@ -112,17 +115,11 @@ const TodoItem: FC<TodoItemProps> = ({ viewList, onToggle, onRemove }: TodoItemP
 	return (
 		<TodoItemBlock>
 			<TodoCheckBox>
-				<input 
-					type="checkbox"
-					onChange={handleToggle}
-				/>
+				<input type="checkbox" onChange={handleToggle} />
 				<SvgCheck />
 			</TodoCheckBox>
 			<Link to="/">{viewList.text}</Link>
-			<TodoDeleteButton 
-				type="button"
-				onClick={handleRemove}
-			>
+			<TodoDeleteButton type="button" onClick={handleRemove}>
 				<SvgClose />
 			</TodoDeleteButton>
 		</TodoItemBlock>

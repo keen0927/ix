@@ -13,7 +13,9 @@ import {
 	TOGGLE_LIST_FAILURE,
 	REMOVE_LIST_REQUEST,
 	REMOVE_LIST_SUCCESS,
-	REMOVE_LIST_FAILURE
+	REMOVE_LIST_FAILURE,
+	OPEN_TOAST_POP_REQUEST,
+	OPEN_TOAST_POP_SUCCESS,
 } from './actions';
 
 interface InitialStateProps {
@@ -25,6 +27,8 @@ interface InitialStateProps {
 	isTogglingList: boolean;
 	isRemovingList: boolean;
 	addListErrorReason: string;
+	isToast: boolean;
+	toastMessage: string;
 }
 
 const initialState: InitialStateProps = {
@@ -36,6 +40,8 @@ const initialState: InitialStateProps = {
 	isTogglingList: false,
 	isRemovingList: false,
 	addListErrorReason: '',
+	isToast: false,
+	toastMessage: '',
 };
 
 const todos = (state = initialState, action: LoadListAction) => {
@@ -47,7 +53,7 @@ const todos = (state = initialState, action: LoadListAction) => {
 			case LOAD_LIST_SUCCESS: {
 				draft.lists = action.data.reverse();
 				draft.currentListId = draft.lists[0].id!;
-				draft.viewLists = draft.lists.slice(0,10);
+				draft.viewLists = draft.lists.slice(0, 10);
 				break;
 			}
 			case LOAD_LIST_FAILURE: {
@@ -69,7 +75,7 @@ const todos = (state = initialState, action: LoadListAction) => {
 				draft.isAddingList = false;
 				draft.addListErrorReason = action.error;
 				break;
-			}	
+			}
 			case TOGGLE_LIST_REQUEST: {
 				break;
 			}
@@ -78,7 +84,7 @@ const todos = (state = initialState, action: LoadListAction) => {
 			}
 			case TOGGLE_LIST_FAILURE: {
 				break;
-			}	
+			}
 			case REMOVE_LIST_REQUEST: {
 				break;
 			}
@@ -87,13 +93,19 @@ const todos = (state = initialState, action: LoadListAction) => {
 			}
 			case REMOVE_LIST_FAILURE: {
 				break;
-			}									
+			}
+			case OPEN_TOAST_POP_REQUEST: {
+				draft.isToast = true;
+				draft.toastMessage = action.data;
+				break;
+			}
+			case OPEN_TOAST_POP_SUCCESS: {
+				draft.isToast = false;
+				break;
+			}
 			default: {
 				break;
 			}
-
-
-			
 		}
 	});
 };
