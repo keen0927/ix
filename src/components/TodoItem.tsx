@@ -14,6 +14,7 @@ const TodoCheckBox = styled.span<{ done: boolean }>`
 	background-color: rgba(62, 210, 229);
 	opacity: ${props => (props.done ? 1 : 0.2 )};
 	transition: opacity 0.3s;
+	cursor: pointer;
 
 	svg {
 		position: absolute;
@@ -87,7 +88,8 @@ const TodoDeleteButton = styled.button`
 
 const TodoItem: FC<TodoItemProps> = ({ viewList, onToggle, onRemove }: TodoItemProps) => {
 
-	const { text, done } = viewList;
+	const { id, text, done } = viewList;
+	
 	const handleToggle = () => {
 		onToggle(viewList.id);
 	};
@@ -101,7 +103,7 @@ const TodoItem: FC<TodoItemProps> = ({ viewList, onToggle, onRemove }: TodoItemP
 			<TodoCheckBox onClick={handleToggle} done={done}>
 				<SvgCheck />
 			</TodoCheckBox>
-			<Link to="/" >{text}</Link>
+			<Link to="/" >{id} : {text}</Link>
 			<TodoDeleteButton 
 				type="button"
 				onClick={handleRemove}

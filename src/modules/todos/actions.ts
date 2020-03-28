@@ -41,9 +41,18 @@ export const addListFailure = (error: string) => ({
 });
 
 // Toggle List
-export const toggleListRequest = (id: number) => ({ 
+export const toggleListRequest = (id: number, data: TodoProps) => ({ 
 	type: TOGGLE_LIST_REQUEST,
-	id: id
+	id: id,
+	data: data
+});
+export const toggleListSuccess = (data: TodoProps) => ({ 
+	type: TOGGLE_LIST_SUCCESS,
+	data: data
+});
+export const toggleListFailure = (error: string) => ({ 
+	type: TOGGLE_LIST_FAILURE,
+	error: error
 });
 
 // Remove List
@@ -69,6 +78,8 @@ export type LoadListAction =
 	| ReturnType<typeof addListSuccess>
 	| ReturnType<typeof addListFailure>	
 	| ReturnType<typeof toggleListRequest>
+	| ReturnType<typeof toggleListSuccess>
+	| ReturnType<typeof toggleListFailure>
 	| ReturnType<typeof removeListRequest>		
 	| ReturnType<typeof removeListSuccess>		
 	| ReturnType<typeof removeListFailure>;		

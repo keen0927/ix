@@ -9,6 +9,8 @@ import {
 	ADD_LIST_SUCCESS,
 	ADD_LIST_FAILURE,
 	TOGGLE_LIST_REQUEST,
+	TOGGLE_LIST_SUCCESS,
+	TOGGLE_LIST_FAILURE,
 	REMOVE_LIST_REQUEST,
 	REMOVE_LIST_SUCCESS,
 	REMOVE_LIST_FAILURE,
@@ -21,6 +23,7 @@ interface InitialStateProps {
 	currentListId: number;
 	isAddingList: boolean;
 	isRemovingList: boolean;
+	isTogglingList: boolean;
 	addListErrorReason: string;
 }
 
@@ -31,7 +34,8 @@ const initialState: InitialStateProps = {
 	currentListId: 0,
 	isAddingList: false,
 	isRemovingList: false,
-	addListErrorReason: '',
+	isTogglingList: false,
+	addListErrorReason: ''
 };
 
 const todos = (state = initialState, action: LoadListAction) => {
@@ -67,11 +71,19 @@ const todos = (state = initialState, action: LoadListAction) => {
 				break;
 			}	
 			case TOGGLE_LIST_REQUEST: {
+				draft.isTogglingList = true;
 				const index = draft.viewLists.findIndex(v => v.id === action.id);
-				draft.lists[index].done = !draft.lists[index].done;
 				draft.viewLists[index].done = !draft.viewLists[index].done;
 				break;
 			}
+			case TOGGLE_LIST_SUCCESS: {
+				draft.isTogglingList = false;
+				break;
+			}
+			case TOGGLE_LIST_FAILURE: {
+				draft.isTogglingList = false;
+				break;
+			}			
 			case REMOVE_LIST_REQUEST: {
 				draft.isRemovingList = true;
 				break;
@@ -79,6 +91,8 @@ const todos = (state = initialState, action: LoadListAction) => {
 			case REMOVE_LIST_SUCCESS: {
 				draft.isRemovingList = false;
 				const index = draft.viewLists.findIndex(v => v.id === action.id);
+				const viewListsLength = state.viewLists.length;
+				viewListsLength >= 10 ? draft.viewLists.push(draft.lists[viewListsLength + 1]) : null;
 				draft.lists.splice(index,1);
 				draft.viewLists.splice(index,1);
 				break;

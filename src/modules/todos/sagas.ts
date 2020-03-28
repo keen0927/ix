@@ -1,4 +1,4 @@
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import { all, call, fork, put, takeEvery, delay } from 'redux-saga/effects';
 import axios from 'axios';
 import { 
 	LOAD_LIST_REQUEST,
@@ -9,7 +9,13 @@ import {
 	ADD_LIST_FAILURE,
 	REMOVE_LIST_REQUEST,
 	REMOVE_LIST_SUCCESS,
-	REMOVE_LIST_FAILURE} from './actions';
+	REMOVE_LIST_FAILURE,
+	TOGGLE_LIST_REQUEST,
+	TOGGLE_LIST_SUCCESS,
+	TOGGLE_LIST_FAILURE,	
+	removeListRequest,
+	addListRequest,
+	toggleListRequest} from './actions';
 import { TodoProps } from './types';
 
 // Load List
@@ -20,6 +26,7 @@ function loadListAPI() {
 function* loadList() {
 	try {
 		const result = yield call(loadListAPI);
+		yield delay(500);
 		yield put({
 			type: LOAD_LIST_SUCCESS,
 			data: result.data,
@@ -37,11 +44,11 @@ function* watchLoadList() {
 }
 
 // Add List
-function addListAPI(postData: TodoProps) {
-	return axios.post('http://localhost:3000/posts', postData);
+function addListAPI(data: TodoProps) {
+	return axios.post('http://localhost:3000/posts', data);
 }
 
-function* addList(action: any) {
+function* addList(action: ReturnType<typeof addListRequest>) {
 	try {
 		const result = yield call(addListAPI, action.data);
 		yield put({
@@ -66,7 +73,7 @@ function removeListAPI(id: number) {
 	return axios.delete(`http://localhost:3000/posts/${id}`);
 }
 
-function* removeList(action: any) {
+function* removeList(action: ReturnType<typeof removeListRequest>) {
 	try {
 		yield call(removeListAPI, action.id);
 		yield put({
@@ -86,10 +93,36 @@ function* watchRemoveList() {
 	yield takeEvery(REMOVE_LIST_REQUEST, removeList);
 }
 
+// Toggle List
+function toggleListAPI(id: number, data: TodoProps) {
+	return axios.put(`http://localhost:3000/posts/${id}`, data);
+}
+
+function* toggleList(action: ReturnType<typeof toggleListRequest>) {
+	try {
+		yield call(toggleListAPI, action.id, action.data);
+		yield put({
+			type: TOGGLE_LIST_SUCCESS,
+			data: action.data
+		});
+	} catch (e) {
+		console.error(e);
+		yield put({
+			type: TOGGLE_LIST_FAILURE,
+			error: e
+		});
+	}
+}
+
+function* watchToggleList() {
+	yield takeEvery(TOGGLE_LIST_REQUEST, toggleList);
+}
+
 export function* listSaga() {
 	yield all([
 		fork(watchLoadList),
 		fork(watchAddList),
 		fork(watchRemoveList),
+		fork(watchToggleList),
 	]);
 }
