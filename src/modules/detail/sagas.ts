@@ -42,9 +42,6 @@ function* watchLoadDetailList() {
 
 // Save List
 function saveDetailListAPI(id: number, data: TodoProps) {
-	console.log('id', id);
-	console.log('TodoProps', data);
-
 	return axios.put(`http://localhost:3000/posts/${id}`, data);
 }
 

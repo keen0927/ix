@@ -29,6 +29,7 @@ interface InitialStateProps {
 	isRemovingList: boolean;
 	isTogglingList: boolean;
 	addListErrorReason: string;
+	currentPage: number;
 }
 
 const initialState: InitialStateProps = {
@@ -40,6 +41,7 @@ const initialState: InitialStateProps = {
 	isRemovingList: false,
 	isTogglingList: false,
 	addListErrorReason: '',
+	currentPage: 1,
 };
 
 const todos = (state = initialState, action: LoadListAction) => {

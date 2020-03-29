@@ -35,6 +35,7 @@ const SearchList = () => {
 
 	const onToggle = useCallback(
 		(id: number) => {
+			if (searchList.length === 0) return;
 			if (isTogglingList) return;
 
 			const targetTodo = searchList.filter(v => v.id === id);

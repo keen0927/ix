@@ -51,10 +51,10 @@ const TodoItemBlock = styled.li<{ done: boolean }>`
 
 	a {
 		flex: 1;
+		margin: 0 16px;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
-		margin: 0 16px;
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 		word-wrap: break-word;
