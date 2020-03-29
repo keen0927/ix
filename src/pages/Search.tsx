@@ -6,6 +6,7 @@ import React from 'react';
 import SearchList from '../container/SearchList';
 import SearchHeader from '../container/SearchHeader';
 import NavigationSub from '../components/NavigationSub';
+import SearchFilter from '../container/SearchFilter';
 import styled from '@emotion/styled';
 
 const SearchBlock = styled.div`
@@ -17,7 +18,8 @@ const Search = () => {
 		<SearchBlock>
 			<NavigationSub />
 			<SearchHeader />
-			<SearchList />		
+			<SearchFilter />
+			<SearchList />
 		</SearchBlock>
 	);
 };

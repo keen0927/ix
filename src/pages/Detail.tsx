@@ -53,6 +53,7 @@ const DetailBlock = styled.div`
 		padding-top: 14px;
 		font-size: 14px;
 		line-height: 1.4;
+		word-break: break-word;
 	}
 
 	textarea {

@@ -3,7 +3,7 @@
  */
 
 import produce from 'immer';
-import { TodoProps } from './types';
+import { TodoProps } from '../todos/types';
 import {
 	SearchListAction,
 	SEARCH_LIST_REQUEST,
@@ -15,16 +15,19 @@ import {
 	REMOVE_SEARCH_LIST_REQUEST,
 	REMOVE_SEARCH_LIST_SUCCESS,
 	REMOVE_SEARCH_LIST_FAILURE,
+	FILTER_SEARCH_LIST,
 } from './actions';
 
 interface InitialStateProps {
+	originSearchList: TodoProps[];
 	searchList: TodoProps[];
 	isSearching: boolean;
 	isToggling: boolean;
-	isRemoving:boolean;
+	isRemoving: boolean;
 }
 
 const initialState: InitialStateProps = {
+	originSearchList: [],
 	searchList: [],
 	isSearching: false,
 	isToggling: false,
@@ -41,6 +44,7 @@ const search = (state = initialState, action: SearchListAction) => {
 			case SEARCH_LIST_SUCCESS: {
 				draft.isSearching = false;
 				draft.searchList = action.data.reverse();
+				draft.originSearchList = draft.searchList;
 				break;
 			}
 			case SEARCH_LIST_FAILURE: {
@@ -60,7 +64,7 @@ const search = (state = initialState, action: SearchListAction) => {
 			case TOGGLE_SEARCH_LIST_FAILURE: {
 				draft.isToggling = false;
 				break;
-			}		
+			}
 			case REMOVE_SEARCH_LIST_REQUEST: {
 				draft.isRemoving = true;
 				break;
@@ -74,7 +78,18 @@ const search = (state = initialState, action: SearchListAction) => {
 			case REMOVE_SEARCH_LIST_FAILURE: {
 				draft.isRemoving = false;
 				break;
-			}						
+			}
+			case FILTER_SEARCH_LIST: {
+				if (action.active) {
+					const sortId = [...state.searchList].sort((a, b) => {
+						return a.id - b.id;
+					});
+					draft.searchList = sortId;
+				} else {
+					draft.searchList = draft.originSearchList;
+				}
+				break;
+			}
 			default: {
 				break;
 			}

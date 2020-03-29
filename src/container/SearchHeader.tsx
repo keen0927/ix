@@ -2,7 +2,14 @@
  * Container > Todo Search Header
  */
 
-import React, { useState, useCallback, ChangeEvent, FormEvent, FC, useRef } from 'react';
+import React, {
+	useState,
+	useCallback,
+	ChangeEvent,
+	FormEvent,
+	FC,
+	useRef,
+} from 'react';
 import styled from '@emotion/styled';
 import { SvgSearch } from '../static/svg/svgAsset';
 import { ButtonTypeCircle } from '../static/css-in-js/styleCommon';
@@ -11,13 +18,13 @@ import { searchListRequest } from '../modules/search';
 import { RootState } from '../modules';
 
 const SearchInputBlock = styled.div`
-  display: flex;
+	display: flex;
 	justify-content: space-between;
 	height: 40px;
-  margin-top: 10px;
+	margin-top: 10px;
 
-  div {
-    display: flex;
+	div {
+		display: flex;
 		align-items: center;
 		flex: 1;
 		height: 40px;
@@ -32,8 +39,8 @@ const SearchInputBlock = styled.div`
 			justify-content: center;
 			font-size: 14px;
 			color: inherit;
-		}    
-  }
+		}
+	}
 `;
 
 const ButtonSearch = styled(ButtonTypeCircle)`
@@ -62,12 +69,12 @@ const SearchHeader: FC = () => {
 
 	const onSubmit = useCallback<(e: FormEvent<HTMLFormElement>) => void>(
 		e => {
-      e.preventDefault();
-      
-      if (!value || !value.trim()) {
+			e.preventDefault();
+
+			if (!value || !value.trim()) {
 				return alert('검색어를 1자 이상 입력 해 주세요.');
 			}
-			
+
 			if (isSearching) return;
 
 			dispatch(searchListRequest(value));
@@ -76,20 +83,26 @@ const SearchHeader: FC = () => {
 				setValue('');
 				inputEl.current?.focus();
 			}
-			
 		},
 		[value],
 	);
 
 	return (
-    <form onSubmit={onSubmit}>
-      <SearchInputBlock>
-        <div><input type="text" value={value} ref={inputEl} onChange={onChange} placeholder="Input Your Search Keyword.."/></div>
-        <ButtonSearch type="submit">
-          <SvgSearch />
-        </ButtonSearch>
-      </SearchInputBlock>
-      
+		<form onSubmit={onSubmit}>
+			<SearchInputBlock>
+				<div>
+					<input
+						type="text"
+						value={value}
+						ref={inputEl}
+						onChange={onChange}
+						placeholder="Input Your Search Keyword.."
+					/>
+				</div>
+				<ButtonSearch type="submit">
+					<SvgSearch />
+				</ButtonSearch>
+			</SearchInputBlock>
 		</form>
 	);
 };

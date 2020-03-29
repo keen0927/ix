@@ -1,18 +1,13 @@
 /**
- * Todo Types
+ * Search Types
  */
 
-export type TodoProps = {
-	id: number;
-	text: string;
-	createDate: string;
-	editDate: string;
-	done: boolean;
-	reference: number[];
+export type FilterListProps = {
+  text: string;
+  case: string;
 };
 
-export type TodoItemProps = {
-	viewList: TodoProps;
-	onToggle: (id: number) => void;
-	onRemove: (id: number) => void;
+export type ToggleProps = {
+  filterList: FilterListProps;
+  onSort: (active: boolean) => void;
 };

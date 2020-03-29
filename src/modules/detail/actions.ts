@@ -2,7 +2,7 @@
  * Detail Actinos
  */
 
-import { TodoProps } from './types';
+import { TodoProps } from '../todos/types';
 
 // Actions
 export const LOAD_DETAIL_LIST_REQUEST = 'LOAD_DETAIL_LIST_REQUEST' as const;

@@ -2,7 +2,7 @@
  * Search Saga
  */
 
-import { all, call, fork, put, takeEvery, delay } from 'redux-saga/effects';
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import {
 	SEARCH_LIST_REQUEST,
@@ -57,6 +57,7 @@ function* removeList(action: ReturnType<typeof removeSearchListRequest>) {
 			id: action.id,
 		});
 	} catch (e) {
+		console.error(e);
 		yield put({
 			type: REMOVE_SEARCH_LIST_FAILURE,
 			error: e,

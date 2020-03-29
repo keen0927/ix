@@ -2,7 +2,7 @@
  * Search Actinos
  */
 
-import { TodoProps } from './types';
+import { TodoProps } from '../todos/types';
 
 // Actions
 export const SEARCH_LIST_REQUEST = 'SEARCH_LIST_REQUEST' as const;
@@ -17,9 +17,11 @@ export const REMOVE_SEARCH_LIST_REQUEST = 'REMOVE_SEARCH_LIST_REQUEST' as const;
 export const REMOVE_SEARCH_LIST_SUCCESS = 'REMOVE_SEARCH_LIST_SUCCESS' as const;
 export const REMOVE_SEARCH_LIST_FAILURE = 'REMOVE_SEARCH_LIST_FAILURE' as const;
 
+export const FILTER_SEARCH_LIST = 'FILTER_SEARCH_LIST' as const;
+
 // Action Create Function
 // Search List
-export const searchListRequest = (data: string) => ({ 
+export const searchListRequest = (data: string) => ({
 	type: SEARCH_LIST_REQUEST,
 	data,
 });
@@ -58,6 +60,12 @@ export const removeSearchListFailure = (error: string) => ({
 	error,
 });
 
+// Filter Search List
+export const filterSearchList = (active: boolean) => ({
+	type: FILTER_SEARCH_LIST,
+	active
+});
+
 // Return Type Action
 export type SearchListAction =
 	| ReturnType<typeof searchListRequest>
@@ -68,4 +76,5 @@ export type SearchListAction =
 	| ReturnType<typeof toggleSearchListFailure>
 	| ReturnType<typeof removeSearchListRequest>
 	| ReturnType<typeof removeSearchListSuccess>
-	| ReturnType<typeof removeSearchListFailure>;
+	| ReturnType<typeof removeSearchListFailure>
+	| ReturnType<typeof filterSearchList>;

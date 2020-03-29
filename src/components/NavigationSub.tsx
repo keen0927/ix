@@ -17,14 +17,13 @@ const ButtonBack = styled.span`
 `;
 
 const NavigationSub = () => {
-
-  return (
-    <ButtonBack>
-      <Link to="/">
-        <SvgBack />
-      </Link>
-    </ButtonBack>    
-  );
+	return (
+		<ButtonBack>
+			<Link to="/">
+				<SvgBack />
+			</Link>
+		</ButtonBack>
+	);
 };
 
 export default NavigationSub;
