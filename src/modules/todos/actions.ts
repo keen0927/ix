@@ -22,51 +22,51 @@ export const REMOVE_LIST_FAILURE = 'REMOVE_LIST_FAILURE' as const;
 export const loadListRequest = () => ({ type: LOAD_LIST_REQUEST });
 export const loadListSuccess = (data: TodoProps[]) => ({
 	type: LOAD_LIST_SUCCESS,
-	data: data
+	data,
 });
 export const loadListFailure = () => ({ type: LOAD_LIST_FAILURE });
 
 // Add List
-export const addListRequest = (data: TodoProps) => ({ 
+export const addListRequest = (data: TodoProps) => ({
 	type: ADD_LIST_REQUEST,
-	data: data
+	data,
 });
 export const addListSuccess = (data: TodoProps) => ({
 	type: ADD_LIST_SUCCESS,
-	data: data
+	data,
 });
 export const addListFailure = (error: string) => ({
 	type: ADD_LIST_FAILURE,
-	error: error
+	error,
 });
 
 // Toggle List
-export const toggleListRequest = (id: number, data: TodoProps) => ({ 
+export const toggleListRequest = (id: number, data: TodoProps) => ({
 	type: TOGGLE_LIST_REQUEST,
-	id: id,
-	data: data
+	id,
+	data,
 });
-export const toggleListSuccess = (data: TodoProps) => ({ 
+export const toggleListSuccess = (data: TodoProps) => ({
 	type: TOGGLE_LIST_SUCCESS,
-	data: data
+	data,
 });
-export const toggleListFailure = (error: string) => ({ 
+export const toggleListFailure = (error: string) => ({
 	type: TOGGLE_LIST_FAILURE,
-	error: error
+	error,
 });
 
 // Remove List
-export const removeListRequest = (id: number) => ({ 
+export const removeListRequest = (id: number) => ({
 	type: REMOVE_LIST_REQUEST,
-	id: id
+	id,
 });
 export const removeListSuccess = (id: number) => ({
 	type: REMOVE_LIST_SUCCESS,
-	id: id
+	id,
 });
 export const removeListFailure = (error: string) => ({
 	type: REMOVE_LIST_FAILURE,
-	error: error
+	error,
 });
 
 // Return Type Action
@@ -76,10 +76,10 @@ export type LoadListAction =
 	| ReturnType<typeof loadListFailure>
 	| ReturnType<typeof addListRequest>
 	| ReturnType<typeof addListSuccess>
-	| ReturnType<typeof addListFailure>	
+	| ReturnType<typeof addListFailure>
 	| ReturnType<typeof toggleListRequest>
 	| ReturnType<typeof toggleListSuccess>
 	| ReturnType<typeof toggleListFailure>
-	| ReturnType<typeof removeListRequest>		
-	| ReturnType<typeof removeListSuccess>		
-	| ReturnType<typeof removeListFailure>;		
+	| ReturnType<typeof removeListRequest>
+	| ReturnType<typeof removeListSuccess>
+	| ReturnType<typeof removeListFailure>;

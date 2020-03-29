@@ -35,7 +35,7 @@ const initialState: InitialStateProps = {
 	isAddingList: false,
 	isRemovingList: false,
 	isTogglingList: false,
-	addListErrorReason: ''
+	addListErrorReason: '',
 };
 
 const todos = (state = initialState, action: LoadListAction) => {
@@ -47,7 +47,7 @@ const todos = (state = initialState, action: LoadListAction) => {
 			case LOAD_LIST_SUCCESS: {
 				draft.lists = action.data.reverse();
 				draft.currentListId = draft.lists[0].id!;
-				draft.viewLists = draft.lists.slice(0,10);
+				draft.viewLists = draft.lists.slice(0, 10);
 				break;
 			}
 			case LOAD_LIST_FAILURE: {
@@ -69,7 +69,7 @@ const todos = (state = initialState, action: LoadListAction) => {
 				draft.isAddingList = false;
 				draft.addListErrorReason = action.error;
 				break;
-			}	
+			}
 			case TOGGLE_LIST_REQUEST: {
 				draft.isTogglingList = true;
 				const index = draft.viewLists.findIndex(v => v.id === action.id);
@@ -83,7 +83,7 @@ const todos = (state = initialState, action: LoadListAction) => {
 			case TOGGLE_LIST_FAILURE: {
 				draft.isTogglingList = false;
 				break;
-			}			
+			}
 			case REMOVE_LIST_REQUEST: {
 				draft.isRemovingList = true;
 				break;
@@ -92,16 +92,18 @@ const todos = (state = initialState, action: LoadListAction) => {
 				draft.isRemovingList = false;
 				const index = draft.viewLists.findIndex(v => v.id === action.id);
 				const viewListsLength = state.viewLists.length;
-				viewListsLength >= 10 ? draft.viewLists.push(draft.lists[viewListsLength + 1]) : null;
-				draft.lists.splice(index,1);
-				draft.viewLists.splice(index,1);
+				viewListsLength >= 10
+					? draft.viewLists.push(draft.lists[viewListsLength + 1])
+					: null;
+				draft.lists.splice(index, 1);
+				draft.viewLists.splice(index, 1);
 				break;
 			}
 			case REMOVE_LIST_FAILURE: {
 				draft.isRemovingList = false;
 				draft.addListErrorReason = action.error;
 				break;
-			}	
+			}
 			default: {
 				break;
 			}

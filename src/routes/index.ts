@@ -1,5 +1,7 @@
 import Home from '../pages/Home';
+import Detail from '../pages/Detail';
 import Search from '../pages/Search';
+import Error from '../pages/Error';
 
 const Routes = [
 	{
@@ -8,10 +10,17 @@ const Routes = [
 		exact: true,
 	},
 	{
+		path: '/detail/:id',
+		component: Detail
+	},
+	{
 		path: '/search',
 		component: Search,
-		exact: true
 	},
+	{
+		path: '*',
+		component: Error
+	}
 ];
 
 export default Routes;

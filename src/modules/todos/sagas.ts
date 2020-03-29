@@ -1,6 +1,6 @@
 import { all, call, fork, put, takeEvery, delay } from 'redux-saga/effects';
 import axios from 'axios';
-import { 
+import {
 	LOAD_LIST_REQUEST,
 	LOAD_LIST_SUCCESS,
 	LOAD_LIST_FAILURE,
@@ -12,10 +12,11 @@ import {
 	REMOVE_LIST_FAILURE,
 	TOGGLE_LIST_REQUEST,
 	TOGGLE_LIST_SUCCESS,
-	TOGGLE_LIST_FAILURE,	
+	TOGGLE_LIST_FAILURE,
 	removeListRequest,
 	addListRequest,
-	toggleListRequest} from './actions';
+	toggleListRequest,
+} from './actions';
 import { TodoProps } from './types';
 
 // Load List
@@ -59,7 +60,7 @@ function* addList(action: ReturnType<typeof addListRequest>) {
 		console.error(e);
 		yield put({
 			type: ADD_LIST_FAILURE,
-			error: e
+			error: e,
 		});
 	}
 }
@@ -78,13 +79,13 @@ function* removeList(action: ReturnType<typeof removeListRequest>) {
 		yield call(removeListAPI, action.id);
 		yield put({
 			type: REMOVE_LIST_SUCCESS,
-			id: action.id
+			id: action.id,
 		});
 	} catch (e) {
 		console.error(e);
 		yield put({
 			type: REMOVE_LIST_FAILURE,
-			error: e
+			error: e,
 		});
 	}
 }
@@ -103,13 +104,13 @@ function* toggleList(action: ReturnType<typeof toggleListRequest>) {
 		yield call(toggleListAPI, action.id, action.data);
 		yield put({
 			type: TOGGLE_LIST_SUCCESS,
-			data: action.data
+			data: action.data,
 		});
 	} catch (e) {
 		console.error(e);
 		yield put({
 			type: TOGGLE_LIST_FAILURE,
-			error: e
+			error: e,
 		});
 	}
 }
@@ -118,7 +119,7 @@ function* watchToggleList() {
 	yield takeEvery(TOGGLE_LIST_REQUEST, toggleList);
 }
 
-export function* listSaga() {
+export function* todosSaga() {
 	yield all([
 		fork(watchLoadList),
 		fork(watchAddList),

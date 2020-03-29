@@ -35,9 +35,7 @@
     "node_modules",
     "build",
     "scripts",
-    "webpack",
-    "jest",
-    "enzyme"
+    "webpack"
   ],
   "include": [
     "src"
