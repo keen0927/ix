@@ -1,3 +1,7 @@
+/**
+ * Todo Types
+ */
+
 export type TodoProps = {
 	id: number;
 	text: string;

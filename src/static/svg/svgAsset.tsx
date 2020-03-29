@@ -1,3 +1,7 @@
+/**
+ * SVG Assets
+ */
+
 import React from 'react';
 
 export function SvgSearch() {

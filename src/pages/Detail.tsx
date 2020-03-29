@@ -1,3 +1,7 @@
+/**
+ * 상세 페이지
+ */
+
 import React, { FC, useEffect, useState, ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -122,22 +126,26 @@ const Detail: FC = () => {
 
 	const { text, createDate, editDate } = detailList;
 
+	// state 수정
 	const onEdit = () => {
 		if (edit) return;
 		setEdit(true);
 	};
 
+	// state 변경
 	const onChange = (e: {
 		currentTarget: { value: React.SetStateAction<string> };
 	}) => {
 		setEditText(e.currentTarget.value);
 	};
 
+	// 취소
 	const onCancel = () => {
 		setEdit(false);
 		setEditText('');
 	};
 
+	// 저장
 	const onSubmit = () => {
 		if (isSaving) return;
 

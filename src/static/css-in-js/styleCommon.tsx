@@ -1,3 +1,7 @@
+/**
+ * 공통 스타일
+ */
+
 import styled from '@emotion/styled';
 import styleVars from '../../static/css-in-js/styleVars';
 

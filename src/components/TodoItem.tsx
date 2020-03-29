@@ -1,3 +1,7 @@
+/**
+ * Component > Todo Item
+ */
+
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';

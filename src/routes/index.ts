@@ -1,3 +1,7 @@
+/**
+ * Route List
+ */
+
 import Home from '../pages/Home';
 import Detail from '../pages/Detail';
 import Search from '../pages/Search';

@@ -1,3 +1,7 @@
+/**
+ * 에러 페이지
+ */
+
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
