@@ -2,7 +2,7 @@
  * 상세 페이지
  */
 
-import React, { FC, useEffect, useState, ReactNode } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
@@ -10,32 +10,22 @@ import {
 	loadDetailListRequest,
 	saveDetailListRequest,
 } from '../modules/detail';
-import { SvgBack, SvgWrite, SvgClose, SvgCheck } from '../static/svg/svgAsset';
-import { Link } from 'react-router-dom';
+import { SvgWrite, SvgClose, SvgCheck } from '../static/svg/svgAsset';
 import styled from '@emotion/styled';
 import { ButtonTypeCircle } from '../static/css-in-js/styleCommon';
 import styleVars from '../static/css-in-js/styleVars';
 import dayjs from 'dayjs';
+import NavigationSub from '../components/NavigationSub';
 
 const TopNavigation = styled.div`
 	display: flex;
 	justify-content: space-between;
-	padding: 20px 14px 0 14px;
-`;
-
-const ButtonBack = styled.span`
-	svg {
-		margin-left: 5px;
-		path {
-			fill: rgba(0, 0, 0, 0.32);
-		}
-	}
+	padding: 20px 24px 0 24px;
 `;
 
 const ButtonEdit = styled(ButtonTypeCircle)`
 	width: 40px;
 	height: 40px;
-	margin-right: 8px;
 	border-radius: 100%;
 
 	svg {
@@ -160,16 +150,13 @@ const Detail: FC = () => {
 		dispatch(saveDetailListRequest(numId, saveTodo));
 		setEdit(false);
 		setEditText('');
+		alert('수정 되었습니다.');
 	};
 
 	return (
 		<>
 			<TopNavigation>
-				<ButtonBack>
-					<Link to="/">
-						<SvgBack />
-					</Link>
-				</ButtonBack>
+				<NavigationSub />
 				<ButtonEdit onClick={onEdit}>
 					<SvgWrite />
 				</ButtonEdit>
